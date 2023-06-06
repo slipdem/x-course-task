@@ -1,0 +1,22 @@
+$white: rgb(255, 255, 255);
+$blue: rgb(0, 46, 71);
+$orange: rgb(245, 126, 0);
+$orangeHover: rgba(245, 126, 0, 0.75);
+
+$gradient-top: linear-gradient(0deg, #ffffffff, #003049ff, #f77f00ff);
+$gradient-right: linear-gradient(90deg, #ffffffff, #003049ff, #f77f00ff);
+$gradient-bottom: linear-gradient(180deg, #ffffffff, #003049ff, #f77f00ff);
+$gradient-left: linear-gradient(270deg, #ffffffff, #003049ff, #f77f00ff);
+$gradient-top-right: linear-gradient(45deg, #ffffffff, #003049ff, #f77f00ff);
+$gradient-bottom-right: linear-gradient(
+	135deg,
+	#ffffffff,
+	#003049ff,
+	#f77f00ff
+);
+$gradient-top-left: linear-gradient(225deg, #ffffffff, #003049ff, #f77f00ff);
+$gradient-bottom-left: linear-gradient(315deg, #ffffffff, #003049ff, #f77f00ff);
+$gradient-radial: radial-gradient(#ffffffff, #003049ff, #f77f00ff);
+
+$mobile-width: 600px;
+$tablet-width: 1024px;

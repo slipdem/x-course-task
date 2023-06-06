@@ -1,0 +1,24 @@
+.card {
+	max-width: 250px;
+	width: 100%;
+	padding: 0.5rem;
+	border: 1px solid $blue;
+  border-radius: 3px;
+	transition: all 0.3s ease-in;
+	&:hover {
+		box-shadow: 5px 5px 15px 0px rgba(0, 46, 71, 0.25);
+	}
+	&__image {
+	}
+
+	&__body {
+	}
+
+	&__footer {
+		@include flex(space-between, center);
+    button {
+      background-color: $blue;
+      padding: 0.5rem 1.5rem;
+    }
+	}
+}

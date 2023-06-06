@@ -1,0 +1,11 @@
+.books {
+  padding-bottom: 5rem;
+  &__header {
+    margin-bottom: 1rem;
+  }
+	&__catalog {
+		@include flex(space-between, center);
+    gap: 1rem;
+    flex-wrap: wrap;
+	}
+}

@@ -1,0 +1,65 @@
+.header {
+	margin-bottom: 1rem;
+	border-bottom: 1px solid $orange;
+	border-top: 2px solid $orange;
+	padding: 0.5rem 1rem;
+	gap: 1rem;
+
+	&__nav {
+		@include flex(space-between, center);
+		width: 100%;
+		max-width: 1620px;
+		// padding: 0 2rem;
+		margin: auto;
+	}
+
+	.brand {
+		&__name {
+			text-transform: uppercase;
+			font-size: 1.5rem;
+			font-weight: 500;
+		}
+		&__devider {
+			display: inline-block;
+			margin-left: 0.5rem;
+			margin-right: 0.5rem;
+			font-size: 1.5rem;
+			font-weight: 500;
+		}
+
+		&__userName {
+			text-transform: capitalize;
+			font-weight: 500;
+		}
+	}
+
+	.user {
+		@include flex(space-between, center);
+		gap: 1rem;
+		&__cart {
+			position: relative;
+			width: 2.5rem;
+			height: 2.5rem;
+			&-count {
+				position: absolute;
+				top: 3px;
+				left: -13px;
+				font-size: 1.5rem;
+				font-weight: 700;
+				color: $orange;
+			}
+		}
+		&__avatar {
+			width: 2.5rem;
+			height: 2.5rem;
+			border-radius: 50%;
+			border: 2px solid $orange;
+			overflow: hidden;
+			img {
+				object-fit: contain;
+				height: 100%;
+				width: 100%;
+			}
+		}
+	}
+}
