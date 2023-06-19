@@ -1,19 +1,22 @@
 .header {
 	margin-bottom: 1rem;
-	border-bottom: 1px solid $orange;
-	border-top: 2px solid $orange;
+	border-bottom: 1px solid $lightgray;
 	padding: 0.5rem 1rem;
 	gap: 1rem;
+	// background-color: $;
+	color: $black;
 
 	&__nav {
 		@include flex(space-between, center);
 		width: 100%;
 		max-width: 1620px;
-		// padding: 0 2rem;
 		margin: auto;
 	}
 
 	.brand {
+		@include flex(center, center);
+		border-right: 1px solid $lightgray;
+		padding-right: 1.5rem;
 		&__name {
 			text-transform: uppercase;
 			font-size: 1.5rem;
@@ -35,6 +38,8 @@
 
 	.user {
 		@include flex(space-between, center);
+		border-left: 1px solid $lightgray;
+		padding-left: 1.5rem;
 		gap: 1rem;
 		&__cart {
 			position: relative;
