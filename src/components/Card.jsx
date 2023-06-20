@@ -1,6 +1,7 @@
 import React from 'react';
 // import { Button } from '.';
 import noImage from '../assets/images/imageNotFound.png';
+import { Link } from 'react-router-dom';
 
 const Card = ({ author, price, image, title }) => {
 	return (
@@ -11,18 +12,19 @@ const Card = ({ author, price, image, title }) => {
 					alt='book'
 				/>
 			</div>
+
 			<div className='card__content'>
 				<div className='card__body'>
 					<h3>{title}</h3>
-					<h5>{author}</h5>
+					<p>{author}</p>
 				</div>
 				<div className='card__footer'>
 					<span className='card__price'>${price}</span>
-					<a
+					<Link
 						className='btn'
 						href='/'>
 						View
-					</a>
+					</Link>
 				</div>
 			</div>
 		</div>
