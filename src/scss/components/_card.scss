@@ -2,8 +2,9 @@
 	@include flex(flex-start, flex-start);
 	max-width: 400px;
 	width: 100%;
-	max-height: 265px;
-	height: 100%;
+	// max-height: 265px;
+	height: 265px;
+	// height: 100%;
 	background-color: $biege;
 	border: 1px solid $lightgray;
 	border-radius: 0.5rem;

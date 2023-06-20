@@ -1,6 +1,6 @@
 import React from 'react';
 import { Card, SearchBooks, SortBooks } from '.';
-
+import booksData from '../assets/fake-data/books.json';
 const Catalog = () => {
 	return (
 		<section className='books'>
@@ -9,6 +9,7 @@ const Catalog = () => {
 				<SortBooks />
 			</header>
 			<div className='books__catalog'>
+				{console.log(booksData)}
 				<Card />
 				<Card />
 				<Card />
