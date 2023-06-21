@@ -1,0 +1,31 @@
+.book {
+	@include flex(space-between, flex-start);
+	gap: 2rem;
+	&__info {
+		@include flex(space-between, flex-start);
+		gap: 1rem;
+		&-image {
+			max-width: 250px;
+		}
+		&-meta {
+		}
+	}
+	&__order {
+		border: 1px dashed #000;
+		padding: 1rem;
+		&-price {
+      @include flex(space-between, center);
+		}
+		&-count {
+      @include flex(space-between, center);
+      input {
+        display: block
+      }
+		}
+		&-total {
+      @include flex(space-between, center);
+		}
+	}
+	&__description {
+	}
+}

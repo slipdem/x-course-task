@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { Books, BookInfo, Cart, SignIn, Error404 } from '../pages';
+import { Books, Book, Cart, SignIn, Error404 } from '../pages';
 import { Route, Routes } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
 
@@ -19,7 +19,7 @@ const AppRouter = () => {
 				/>
 				<Route
 					path='/books/:id'
-					element={<BookInfo />}
+					element={<Book />}
 				/>
 				<Route
 					path='/cart'

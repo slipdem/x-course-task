@@ -6,10 +6,10 @@ const SortBooks = () => {
 			className='books__sort-select'
 			name='bookSort'
 			id='selectBookSort'>
-			<option value='price'>price</option>
-			<option value='name'>name</option>
-			<option value='author'>author</option>
-			<option value='title'>title</option>
+			<option value='all'>all</option>
+			<option value='less 15'>0 to 15</option>
+			<option value='less 30'>15 to 30</option>
+			<option value='more 30'>+30</option>
 		</select>
 	);
 };

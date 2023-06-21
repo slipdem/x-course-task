@@ -1,12 +1,21 @@
-import { Card, SearchBooks, SortBooks } from '.';
+import { Card, BooksHeader } from '.';
 import data from '../assets/fake-data/books.json';
 const Catalog = () => {
+	// let finalData = {};
+
+	// const arrRes = async ()=>{
+	// let res = await fetch('https://jsonplaceholder.typicode.com/posts/');
+	// let res = await fetch('../assets/fake-data/books.json');
+	// let sRes = await res.json();
+	// let init = await sRes;
+	// console.log(init)
+	// return init
+	// }
+	// finalData = arrRes();
+
 	return (
 		<section className='books'>
-			<header className='books__header'>
-				<SearchBooks />
-				<SortBooks />
-			</header>
+			<BooksHeader />
 			<div className='books__catalog'>
 				{data.books.map((book) => (
 					<Card

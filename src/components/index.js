@@ -3,5 +3,6 @@ export { default as Button } from './Button';
 export { default as Card } from './Card';
 export { default as Catalog } from './Catalog';
 export { default as Header } from './Header';
+export { default as BooksHeader } from './BooksHeader';
 export { default as SearchBooks } from './SearchBooks';
 export { default as SortBooks } from './SortBooks';

@@ -1,0 +1,144 @@
+[33mcommit 4fd8f52dc209581f786d6f5abc2af07ed0c22c96[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: Dmytro Slipchenko <slipdem@users.noreply.github.com>
+Date:   Tue Jun 20 18:32:09 2023 +0300
+
+    Card and styles
+
+[1mdiff --git a/src/components/Card.jsx b/src/components/Card.jsx[m
+[1mindex 031ae59..ab4db91 100644[m
+[1m--- a/src/components/Card.jsx[m
+[1m+++ b/src/components/Card.jsx[m
+[36m@@ -1,6 +1,7 @@[m
+ import React from 'react';[m
+ // import { Button } from '.';[m
+ import noImage from '../assets/images/imageNotFound.png';[m
+[32m+[m[32mimport { Link } from 'react-router-dom';[m
+ [m
+ const Card = ({ author, price, image, title }) => {[m
+ 	return ([m
+[36m@@ -11,18 +12,19 @@[m [mconst Card = ({ author, price, image, title }) => {[m
+ 					alt='book'[m
+ 				/>[m
+ 			</div>[m
+[32m+[m
+ 			<div className='card__content'>[m
+ 				<div className='card__body'>[m
+ 					<h3>{title}</h3>[m
+[31m-					<h5>{author}</h5>[m
+[32m+[m					[32m<p>{author}</p>[m
+ 				</div>[m
+ 				<div className='card__footer'>[m
+ 					<span className='card__price'>${price}</span>[m
+[31m-					<a[m
+[32m+[m					[32m<Link[m
+ 						className='btn'[m
+ 						href='/'>[m
+ 						View[m
+[31m-					</a>[m
+[32m+[m					[32m</Link>[m
+ 				</div>[m
+ 			</div>[m
+ 		</div>[m
+[1mdiff --git a/src/scss/components/_books.scss b/src/scss/components/_books.scss[m
+[1mindex 15cc14a..89b38d2 100644[m
+[1m--- a/src/scss/components/_books.scss[m
+[1m+++ b/src/scss/components/_books.scss[m
+[36m@@ -1,11 +1,27 @@[m
+ .books {[m
+[31m-  padding-bottom: 5rem;[m
+[31m-  &__header {[m
+[31m-    margin-bottom: 1rem;[m
+[31m-  }[m
+[32m+[m	[32mpadding-bottom: 5rem;[m
+[32m+[m	[32m&__header {[m
+[32m+[m		[32mmargin-bottom: 1rem;[m
+[32m+[m	[32m}[m
+ 	&__catalog {[m
+[31m-		@include flex(space-between, center);[m
+[31m-    gap: 1rem;[m
+[31m-    flex-wrap: wrap;[m
+[32m+[m		[32mdisplay: grid;[m
+[32m+[m[32m    justify-content: space-between;[m
+[32m+[m		[32mgrid-template-columns: repeat(4, 1fr);[m
+[32m+[m		[32mgap: 1rem;[m
+[32m+[m		[32m@media screen and (max-width: 920px) {[m
+[32m+[m			[32m& {[m
+[32m+[m				[32mgrid-template-columns: repeat(3, 1fr);[m
+[32m+[m			[32m}[m
+[32m+[m		[32m}[m
+[32m+[m		[32m@media screen and (max-width: 680px) {[m
+[32m+[m			[32m& {[m
+[32m+[m				[32mgrid-template-columns: repeat(2, 1fr);[m
+[32m+[m			[32m}[m
+[32m+[m		[32m}[m
+[32m+[m		[32m@media screen and (max-width: 440px) {[m
+[32m+[m			[32m& {[m
+[32m+[m				[32mgrid-template-columns: repeat(1, 1fr);[m
+[32m+[m			[32m}[m
+[32m+[m		[32m}[m
+ 	}[m
+ }[m
+[1mdiff --git a/src/scss/components/_card.scss b/src/scss/components/_card.scss[m
+[1mindex 3d49e52..be9d697 100644[m
+[1m--- a/src/scss/components/_card.scss[m
+[1m+++ b/src/scss/components/_card.scss[m
+[36m@@ -1,13 +1,14 @@[m
+ .card {[m
+[31m-	@include flex(flex-start, flex-start);[m
+[31m-	max-width: 400px;[m
+[32m+[m	[32m@include flex(flex-start, center);[m
+[32m+[m	[32mflex-direction: column;[m
+[32m+[m	[32mmax-width: 250px;[m
+ 	width: 100%;[m
+[31m-	// max-height: 265px;[m
+[31m-	height: 265px;[m
+[31m-	// height: 100%;[m
+[32m+[m	[32mmin-height: 100%;[m
+[32m+[m	[32mheight: 100%;[m
+[32m+[m	[32m// margin: 0 auto;[m
+ 	background-color: $biege;[m
+ 	border: 1px solid $lightgray;[m
+[31m-	border-radius: 0.5rem;[m
+[32m+[m	[32mborder-radius: 1rem;[m
+ 	transition: all 0.3s ease-in;[m
+ 	overflow: hidden;[m
+ 	&:hover {[m
+[36m@@ -18,12 +19,14 @@[m
+ 			display: block;[m
+ 			width: 100%;[m
+ 			height: auto;[m
+[32m+[m			[32mobject-fit: contain;[m
+ 		}[m
+ 	}[m
+ 	&__content {[m
+[31m-		@include flex(space-between, stretch);[m
+[32m+[m		[32m@include flex(space-between, flex-start);[m
+ 		flex-direction: column;[m
+[31m-		padding: 1rem;[m
+[32m+[m		[32mpadding: 0.5rem;[m
+[32m+[m		[32mwidth: 100%;[m
+ 		height: 100%;[m
+ 	}[m
+ [m
+[36m@@ -31,10 +34,17 @@[m
+ 	}[m
+ [m
+ 	&__footer {[m
+[31m-		// @include flex(space-between, center);[m
+[31m-		button {[m
+[31m-			background-color: $blue;[m
+[31m-			padding: 0.5rem 1.5rem;[m
+[32m+[m		[32m@include flex(space-between, center);[m
+[32m+[m		[32mwidth: 100%;[m
+[32m+[m		[32mmargin-top: 0.5rem;[m
+[32m+[m		[32m.card__price {[m
+[32m+[m			[32mfont-weight: 500;[m
+[32m+[m		[32m}[m
+[32m+[m		[32m.btn {[m
+[32m+[m			[32m// background-color: $blue;[m
+[32m+[m			[32m// padding: 0.5rem 1.5rem;[m
+[32m+[m			[32mmin-width: 100px;[m
+[32m+[m			[32m// font-weight: 700;[m
+ 		}[m
+ 	}[m
+ }[m

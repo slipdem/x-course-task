@@ -1,4 +1,4 @@
-export { default as BookInfo } from './BookInfo';
+export { default as Book } from './Book';
 export { default as Books } from './Books';
 export { default as Cart } from './Cart';
 export { default as Error404 } from './Error404';
