@@ -57,12 +57,8 @@ const Header = () => {
 					<span
 						className='btn'
 						onClick={() => signOut()}>
-						out
+						Sign Out
 					</span>
-					<Button
-						text='Sign Out'
-						onClick={() => console.log('out')}
-					/>
 				</div>
 			</nav>
 		</header>
