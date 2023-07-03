@@ -1,5 +1,5 @@
 import React from 'react';
-import cartImage from '../assets/images/cart.svg';
+// import cartImage from '../assets/images/cart.svg';
 import { Button, Header } from '../components';
 import HighlightOffRoundedIcon from '@mui/icons-material/HighlightOffRounded';
 const Cart = () => {

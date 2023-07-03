@@ -1,5 +1,5 @@
 import React from 'react';
-import { Header, Catalog } from '../components';
+import { Header, Catalog, Footer } from '../components';
 
 const Books = () => {
 	return (
@@ -8,6 +8,7 @@ const Books = () => {
 			<div className='container'>
 				<Catalog />
 			</div>
+			<Footer />
 		</>
 	);
 };

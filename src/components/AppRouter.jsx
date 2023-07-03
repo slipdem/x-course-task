@@ -1,10 +1,10 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { Books, Book, Cart, SignIn, Error404 } from '../pages';
 import { Route, Routes } from 'react-router-dom';
-import { AuthContext } from '../context/AuthContext';
+import { useAuthContext } from '../context/AuthContext';
 
 const AppRouter = () => {
-	const { isAuth } = useContext(AuthContext);
+	const { isAuth } = useAuthContext();
 
 	function PrivateLinks() {
 		return (

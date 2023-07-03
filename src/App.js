@@ -1,14 +1,12 @@
-import { useState } from 'react';
 import { AppRouter } from './components';
-import { AuthContext } from './context/AuthContext';
+import { AuthContextProvider } from './context/AuthContext';
 
 function App() {
-	const [isAuth, setIsAuth] = useState(true);
 	return (
 		<main className='App'>
-			<AuthContext.Provider value={{ isAuth: isAuth }}>
+			<AuthContextProvider>
 				<AppRouter />
-			</AuthContext.Provider>
+			</AuthContextProvider>
 		</main>
 	);
 }
