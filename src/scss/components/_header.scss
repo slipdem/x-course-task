@@ -1,9 +1,11 @@
 .header {
+	position: sticky;
+	top: 0;
 	margin-bottom: 1rem;
 	border-bottom: 1px solid $lightgray;
 	padding: 0.5rem 1rem;
 	gap: 1rem;
-	// background-color: $;
+	background-color: $white;
 	color: $black;
 
 	&__nav {

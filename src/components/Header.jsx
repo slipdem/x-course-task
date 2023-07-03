@@ -1,5 +1,4 @@
 import { useNavigate } from 'react-router-dom';
-import { Button } from '.';
 import avatar from '../assets/images/avatar.png';
 import cartImg from '../assets/images/cart.svg';
 import { useAuthContext } from '../context/AuthContext';
@@ -11,14 +10,8 @@ const Header = () => {
 	const signOut = () => {
 		setIsAuth(false);
 		setUserName('');
-		// console.log('SingOut');
 		return navigate('/signin');
 	};
-
-	// useEffect(() => {
-	// 	if (!isAuth) {
-	// 	}
-	// }, [isAuth]);
 
 	return (
 		<header className='header'>
@@ -42,7 +35,6 @@ const Header = () => {
 						/>
 						<span className='user__cart-count'>3</span>
 					</a>
-
 					<span className='user__avatar'>
 						<img
 							src={avatar}
