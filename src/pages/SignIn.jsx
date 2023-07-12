@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Button, Header } from '../components';
 import avatar from '../assets/images/avatar.png';
 import { useAuthContext } from '../context/AuthContext';
@@ -6,14 +6,16 @@ import { useNavigate } from 'react-router-dom';
 
 const SingIn = () => {
 	const { isAuth, setIsAuth, userName, setUserName } = useAuthContext();
+	const [disabled, setDisabled] = useState(false);
 	const navigate = useNavigate();
 
 	const logIn = () => {
 		if (userName.length <= 3) {
-			console.log('Name is to short', userName);
+			setDisabled(true);
 		} else if (userName.length >= 16) {
-			console.log('UserName is to long', userName);
+			setDisabled(true);
 		} else {
+			setDisabled(false);
 			setIsAuth(true);
 		}
 	};
@@ -22,7 +24,7 @@ const SingIn = () => {
 		if (isAuth) {
 			return navigate('/');
 		}
-	}, [isAuth]);
+	}, [isAuth, disabled]);
 
 	return (
 		<>
@@ -53,6 +55,7 @@ const SingIn = () => {
 							autoComplete='off'
 						/>
 						<Button
+							disabled={disabled}
 							text='Sign In'
 						/>
 					</div>

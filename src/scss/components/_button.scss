@@ -17,4 +17,9 @@
 		background-color: $blue;
 		border-color: $white;
 	}
+	&:disabled {
+		color: $orange;
+		background-color: $lightgray;
+		border-color: $orange;
+	}
 }
