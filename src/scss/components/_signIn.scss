@@ -6,14 +6,21 @@
 	text-align: center;
 	&-user {
 		max-width: 220px;
+		width: 100%;
 		padding: 0.5rem;
 	}
 	&-user__img {
 		width: 100%;
 		height: auto;
+		img {
+			max-width: 160px;
+			// width: 100%;
+		}
 	}
 	&-user__input {
-		padding: 0.5rem;
+		// padding: 0.5rem;
+		max-width: 220px;
+		width: 100%;
 
 		label {
 			display: block;
@@ -23,10 +30,12 @@
 			display: block;
 			width: 100%;
 			padding: 0.5rem;
-      margin-top: 0.5rem;
-      margin-bottom: 0.5rem;
+			margin-top: 0.5rem;
+			margin-bottom: 0.5rem;
+			max-width: 200px;
 		}
 		button {
+			max-width: 200px;
 			width: 100%;
 		}
 	}

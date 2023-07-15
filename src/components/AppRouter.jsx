@@ -1,11 +1,8 @@
 import React from 'react';
 import { Books, Book, Cart, SignIn, Error404 } from '../pages';
 import { Route, Routes } from 'react-router-dom';
-import { useAuthContext } from '../context/AuthContext';
 
 const AppRouter = () => {
-	const { isAuth } = useAuthContext();
-
 	function PrivateLinks() {
 		return (
 			<Routes>
@@ -48,7 +45,7 @@ const AppRouter = () => {
 		);
 	}
 
-	return isAuth ? (
+	return localStorage.getItem('validUser') === 'true' ? (
 		<Routes>
 			<Route
 				path='*'

@@ -1,15 +1,12 @@
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import avatar from '../assets/images/avatar.png';
 import cartImg from '../assets/images/cart.svg';
-import { useAuthContext } from '../context/AuthContext';
 
 const Header = () => {
-	const { isAuth, userName, setIsAuth, setUserName } = useAuthContext();
 	const navigate = useNavigate();
 
 	const signOut = () => {
-		setIsAuth(false);
-		setUserName('');
+		localStorage.clear();
 		return navigate('/signin');
 	};
 
@@ -25,27 +22,30 @@ const Header = () => {
 					<span className='brand__devider'>/</span>
 					<span className='brand__userName'>Dmytro Slipchenko</span>
 				</div>
-				<div className={`user ${isAuth ? 'flex' : 'hide'}`}>
-					<a
-						href='.'
+				<div
+					className={`user ${
+						localStorage.getItem('validUser') === 'true' ? 'flex' : 'hide'
+					}`}>
+					<Link
+						to='/cart'
 						className='user__cart'>
 						<img
 							src={cartImg}
 							alt='Cart'
 						/>
 						<span className='user__cart-count'>3</span>
-					</a>
+					</Link>
 					<span className='user__avatar'>
 						<img
 							src={avatar}
 							alt='user avatar'
 						/>
 					</span>
-					<a
+					<span
 						href='.'
 						className='user__profile-link'>
-						{userName}
-					</a>
+						{localStorage.getItem('userName')}
+					</span>
 					<span
 						className='btn'
 						onClick={() => signOut()}>

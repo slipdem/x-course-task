@@ -1,30 +1,53 @@
 import React, { useEffect, useState } from 'react';
 import { Button, Header } from '../components';
 import avatar from '../assets/images/avatar.png';
-import { useAuthContext } from '../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
 
 const SingIn = () => {
-	const { isAuth, setIsAuth, userName, setUserName } = useAuthContext();
+	// const { isAuth, setIsAuth } = useAuthContext();
+	const [validUserName, setValidUserName] = useState('');
+	const [userName, setUserName] = useState('');
 	const [disabled, setDisabled] = useState(false);
 	const navigate = useNavigate();
 
 	const logIn = () => {
-		if (userName.length <= 3) {
+		// console.log(userName);
+		// if (userName.length < 4) {
+		// 	setDisabled(true);
+		// } else if (userName.length > 16) {
+		// 	setDisabled(true);
+		// } else {
+		// 	setDisabled(false);
+		// 	setIsAuth(true);
+		// 	setUserName()
+		// 	localStorage.setItem('logIn', true);
+		// 	localStorage.setItem('userName', userName);
+		// }
+		// if
+		if (userName) {
+			return navigate('/');
+		}
+	};
+
+	const handleInputChange = (value) => {
+		setValidUserName(value);
+		if (value.length < 4 || value.length > 16) {
 			setDisabled(true);
-		} else if (userName.length >= 16) {
-			setDisabled(true);
+			localStorage.setItem('validUser', false);
 		} else {
 			setDisabled(false);
-			setIsAuth(true);
+			setUserName(validUserName);
+			localStorage.setItem('validUser', true);
+			localStorage.setItem('userName', value);
 		}
 	};
 
 	useEffect(() => {
-		if (isAuth) {
-			return navigate('/');
+			if (userName) {
+				return navigate('/');
 		}
-	}, [isAuth, disabled]);
+		// }, [isAuth, disabled]);
+	}, []);
 
 	return (
 		<>
@@ -49,12 +72,13 @@ const SingIn = () => {
 							name='username'
 							id='usernameInput'
 							placeholder='Type your username'
-							value={userName}
-							onChange={(e) => setUserName(e.target.value.trim())}
+							value={validUserName}
+							onChange={(e) => handleInputChange(e.target.value.trim())}
 							autoFocus
 							autoComplete='off'
 						/>
 						<Button
+							type='submit'
 							disabled={disabled}
 							text='Sign In'
 						/>
