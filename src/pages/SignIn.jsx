@@ -43,9 +43,9 @@ const SingIn = () => {
 	};
 
 	useEffect(() => {
-			if (userName) {
-				return navigate('/');
-		}
+		// 	if (userName) {
+		// 		return navigate('/');
+		// }
 		// }, [isAuth, disabled]);
 	}, []);
 

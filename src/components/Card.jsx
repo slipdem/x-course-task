@@ -1,9 +1,8 @@
 import React from 'react';
-// import { Button } from '.';
 import noImage from '../assets/images/imageNotFound.png';
 import { Link } from 'react-router-dom';
 
-const Card = ({ author, price, image, title }) => {
+const Card = ({ author, price, image, title, id }) => {
 	return (
 		<div className='card'>
 			<div className='card__image'>
@@ -22,7 +21,7 @@ const Card = ({ author, price, image, title }) => {
 					<span className='card__price'>${price}</span>
 					<Link
 						className='btn'
-						href='/'>
+						to={`/books/${id}`}>
 						View
 					</Link>
 				</div>
