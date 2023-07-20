@@ -1,12 +1,12 @@
 import { AppRouter } from './components';
-import { AuthContextProvider } from './context/AuthContext';
+import { BooksContextProvider } from './context/BooksContext';
 
 function App() {
 	return (
 		<main className='App'>
-			<AuthContextProvider>
+			<BooksContextProvider>
 				<AppRouter />
-			</AuthContextProvider>
+			</BooksContextProvider>
 		</main>
 	);
 }

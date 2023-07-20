@@ -2,7 +2,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import avatar from '../assets/images/avatar.png';
 import cartImg from '../assets/images/cart.svg';
 
-const Header = () => {
+const Header = ({ show = 'flex' }) => {
 	const navigate = useNavigate();
 
 	const signOut = () => {
@@ -22,10 +22,7 @@ const Header = () => {
 					<span className='brand__devider'>/</span>
 					<span className='brand__userName'>Dmytro Slipchenko</span>
 				</div>
-				<div
-					className={`user ${
-						localStorage.getItem('validUser') === 'true' ? 'flex' : 'hide'
-					}`}>
+				<div className={`user ${show}`}>
 					<Link
 						to='/cart'
 						className='user__cart'>

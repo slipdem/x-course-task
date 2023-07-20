@@ -1,29 +1,15 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Button, Header } from '../components';
 import avatar from '../assets/images/avatar.png';
 import { useNavigate } from 'react-router-dom';
 
 const SingIn = () => {
-	// const { isAuth, setIsAuth } = useAuthContext();
 	const [validUserName, setValidUserName] = useState('');
 	const [userName, setUserName] = useState('');
 	const [disabled, setDisabled] = useState(false);
 	const navigate = useNavigate();
 
 	const logIn = () => {
-		// console.log(userName);
-		// if (userName.length < 4) {
-		// 	setDisabled(true);
-		// } else if (userName.length > 16) {
-		// 	setDisabled(true);
-		// } else {
-		// 	setDisabled(false);
-		// 	setIsAuth(true);
-		// 	setUserName()
-		// 	localStorage.setItem('logIn', true);
-		// 	localStorage.setItem('userName', userName);
-		// }
-		// if
 		if (userName) {
 			return navigate('/');
 		}
@@ -42,16 +28,9 @@ const SingIn = () => {
 		}
 	};
 
-	useEffect(() => {
-		// 	if (userName) {
-		// 		return navigate('/');
-		// }
-		// }, [isAuth, disabled]);
-	}, []);
-
 	return (
 		<>
-			<Header />
+			<Header show='hide' />
 			<form
 				className='signIn'
 				onSubmit={(e) => {

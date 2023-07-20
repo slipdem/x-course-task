@@ -2,10 +2,29 @@
 	padding-bottom: 5rem;
 	&__header {
 		margin-bottom: 1rem;
+		@include flex(flex-end, center);
+		.books__search {
+			max-width: 250px;
+			width: 100%;
+			padding: 0.5rem;
+			border-top-left-radius: 0.5rem;
+			border-bottom-left-radius: 0.5rem;
+			border: 1px solid $black;
+			border-right: none;
+			height: 35px;
+		}
+		.books__sort-select {
+			border: 1px solid $black;
+			height: 35px;
+			padding: 0.5rem;
+			text-transform: uppercase;
+			border-top-right-radius: 0.5rem;
+			border-bottom-right-radius: 0.5rem;
+		}
 	}
 	&__catalog {
 		display: grid;
-    justify-content: space-between;
+		justify-content: space-between;
 		grid-template-columns: repeat(4, 1fr);
 		gap: 1rem;
 		@media screen and (max-width: 920px) {
