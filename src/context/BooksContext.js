@@ -1,22 +1,14 @@
 import { createContext, useContext, useEffect, useState } from 'react';
 
-const BooksContext = createContext(1);
+const BooksContext = createContext();
 
 const BooksContextProvider = ({ children }) => {
-	const [booksData, setBooksData] = useState({});
+	const [booksData, setBooksData] = useState([]);
 
 	const value = {
 		booksData,
 		setBooksData,
 	};
-
-	useEffect(() => {
-		fetch('../assets/fake-data/books.json')
-			.then((response) => response.json())
-			.then((data) => {
-				setBooksData(data.books);
-			});
-	});
 
 	return (
 		<BooksContext.Provider value={value}>{children}</BooksContext.Provider>

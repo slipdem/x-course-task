@@ -1,8 +1,14 @@
 import React from 'react';
 import { Button, Header } from '../components';
 import noImage from '../assets/images/imageNotFound.png';
+import { useBooksContext } from '../context/BooksContext';
+import { useParams } from 'react-router-dom';
 
-const Book = ({ author, price, image, title }) => {
+const Book = () => {
+	const { booksData } = useBooksContext();
+	const { id } = useParams();
+	const correctId = id - 1;
+	const book = booksData[correctId];
 	return (
 		<>
 			<Header />
@@ -11,13 +17,13 @@ const Book = ({ author, price, image, title }) => {
 					<div className='book__info'>
 						<div className='book__info-image'>
 							<img
-								src={noImage}
-								alt='1'
+								src={book.image === '' ? noImage : book.image}
+								alt={book.title}
 							/>
 						</div>
 						<div className='book__info-meta'>
-							<h2>Book name</h2>
-							<p>Book author</p>
+							<h2>{book.title}</h2>
+							<p>{book.author}</p>
 							<p>Book level</p>
 							<p>Book tags</p>
 						</div>
@@ -25,7 +31,7 @@ const Book = ({ author, price, image, title }) => {
 					<div className='book__order'>
 						<div className='book__order-price'>
 							<span>Price, $</span>
-							<span>17</span>
+							<span>{book.price}</span>
 						</div>
 						<div className='book__order-count'>
 							<span>Count</span>
@@ -39,12 +45,7 @@ const Book = ({ author, price, image, title }) => {
 					</div>
 				</div>
 				<div className='book__description'>
-					<p>
-						Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto
-						autem eum nobis perferendis praesentium, quibusdam porro excepturi.
-						Maxime, provident obcaecati molestias voluptatem porro dolore omnis
-						praesentium libero! Non, dolore impedit?
-					</p>
+					<p>{book.description}</p>
 				</div>
 			</div>
 		</>

@@ -1,22 +1,32 @@
 import { useEffect, useState } from 'react';
 import { Card, BooksHeader } from '.';
+import { useBooksContext } from '../context/BooksContext';
 const Catalog = () => {
-	const [booksData, setBooksData] = useState();
+	const { setBooksData } = useBooksContext();
+	const [books, setBooks] = useState([]);
+
+	const dataFetch = async () => {
+		try {
+			const data = await (await fetch('../assets/fake-data/books.json')).json();
+			setBooks(data.books);
+			setBooksData(data.books);
+		} catch (error) {
+			console.error(error);
+		}
+	};
 
 	useEffect(() => {
-		fetch('../assets/fake-data/books.json')
-			.then((response) => response.json())
-			.then((data) => {
-				setBooksData(data.books);
-			});
+		dataFetch();
 	}, []);
 
 	return (
 		<section className='books'>
 			<BooksHeader />
 			<div className='books__catalog'>
-				{booksData ? (
-					booksData.map((book) => (
+				{books === undefined ? (
+					<h2>Loading data ...</h2>
+				) : (
+					books.map((book) => (
 						<Card
 							key={book.id}
 							id={book.id}
@@ -26,8 +36,6 @@ const Catalog = () => {
 							title={book.title}
 						/>
 					))
-				) : (
-					<h2>No data</h2>
 				)}
 			</div>
 		</section>
