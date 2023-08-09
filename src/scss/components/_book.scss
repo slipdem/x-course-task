@@ -6,24 +6,37 @@
 		gap: 1rem;
 		&-image {
 			max-width: 250px;
+			width: 100%;
+			flex: 1 0 auto;
 		}
 		&-meta {
+
 		}
 	}
 	&__order {
+		@include flex(space-between, flex-start);
+		flex-direction: column;
+		gap: .5rem;
 		border: 1px dashed #000;
 		padding: 1rem;
+
+		li {
+			width: 100%;
+			gap: 1rem;
+		}
+
 		&-price {
-      @include flex(space-between, center);
+			@include flex(space-between, center);
 		}
 		&-count {
-      @include flex(space-between, center);
-      input {
-        display: block
-      }
+			@include flex(space-between, center);
+			input {
+				display: block;
+				text-align: right
+			}
 		}
 		&-total {
-      @include flex(space-between, center);
+			@include flex(space-between, center);
 		}
 	}
 	&__description {

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Button, Header } from '../components';
 import noImage from '../assets/images/imageNotFound.png';
 import { useBooksContext } from '../context/BooksContext';
@@ -9,6 +9,12 @@ const Book = () => {
 	const { id } = useParams();
 	const correctId = id - 1;
 	const book = booksData[correctId];
+	const [countBooks, setCountBooks] = useState(0);
+
+	const handleChange = (e) => {
+		return setCountBooks(e.target.value);
+	};
+
 	return (
 		<>
 			<Header />
@@ -24,28 +30,40 @@ const Book = () => {
 						<div className='book__info-meta'>
 							<h2>{book.title}</h2>
 							<p>{book.author}</p>
-							<p>Book level</p>
-							<p>Book tags</p>
+							<div className='book__description'>
+								<p>{book.description}</p>
+							</div>
 						</div>
 					</div>
-					<div className='book__order'>
-						<div className='book__order-price'>
-							<span>Price, $</span>
-							<span>{book.price}</span>
-						</div>
-						<div className='book__order-count'>
+					<ul className='book__order'>
+						<li className='book__order-price'>
+							<span>Price</span>
+							<span>${book.price}</span>
+						</li>
+						<li className='book__order-count'>
 							<span>Count</span>
-							<input type='number' />
-						</div>
-						<div className='book__order-total'>
+							<input
+								type='number'
+								onChange={handleChange}
+								defaultValue='0'
+							/>
+						</li>
+						<li className='book__order-total'>
 							<span>Total price</span>
-							<span>51</span>
-						</div>
-						<Button text='Add to cart' />
-					</div>
-				</div>
-				<div className='book__description'>
-					<p>{book.description}</p>
+							<span>${book.price * countBooks}</span>
+						</li>
+						<li>
+							<Button
+								text='Add to cart'
+								type='submit'
+							/>
+							{/* <span
+								className='btn'
+								onClick={() => console.log(booksData[correctId])}>
+								Add to cart
+							</span> */}
+						</li>
+					</ul>
 				</div>
 			</div>
 		</>
