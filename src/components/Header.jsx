@@ -1,9 +1,13 @@
 import { Link, useNavigate } from 'react-router-dom';
 import avatar from '../assets/images/avatar.png';
 import cartImg from '../assets/images/cart.svg';
+import { useBooksContext } from '../context/BooksContext';
 
 const Header = ({ show = 'flex' }) => {
 	const navigate = useNavigate();
+	const {
+		state: { cart },
+	} = useBooksContext();
 
 	const signOut = () => {
 		localStorage.clear();
@@ -14,11 +18,11 @@ const Header = ({ show = 'flex' }) => {
 		<header className='header'>
 			<nav className='header__nav'>
 				<div className='brand'>
-					<a
-						href='/'
+					<Link
+						to='/'
 						className='brand__name'>
 						X-course task
-					</a>
+					</Link>
 					<span className='brand__devider'>/</span>
 					<span className='brand__userName'>Dmytro Slipchenko</span>
 				</div>
@@ -30,7 +34,10 @@ const Header = ({ show = 'flex' }) => {
 							src={cartImg}
 							alt='Cart'
 						/>
-						<span className='user__cart-count'>3</span>
+						{/* <span className='user__cart-count'>{cartItems.length}</span> */}
+						<span className='user__cart-count'>
+							{cart.length ? cart.length : 0}
+						</span>
 					</Link>
 					<span className='user__avatar'>
 						<img

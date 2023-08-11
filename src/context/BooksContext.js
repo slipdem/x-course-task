@@ -1,17 +1,25 @@
-import { createContext, useContext, useEffect, useState } from 'react';
+import { createContext, useContext, useReducer, useState } from 'react';
+import { cartReducer } from '../reducers';
 
 const BooksContext = createContext();
 
 const BooksContextProvider = ({ children }) => {
 	const [booksData, setBooksData] = useState([]);
-
-	const value = {
-		booksData,
-		setBooksData,
-	};
+	const [cartItems, setCartItems] = useState([]);
+	const [state, dispatch] = useReducer(cartReducer, { cart: [] });
 
 	return (
-		<BooksContext.Provider value={value}>{children}</BooksContext.Provider>
+		<BooksContext.Provider
+			value={{
+				booksData,
+				setBooksData,
+				cartItems,
+				setCartItems,
+				state,
+				dispatch,
+			}}>
+			{children}
+		</BooksContext.Provider>
 	);
 };
 

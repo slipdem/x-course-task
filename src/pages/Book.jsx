@@ -5,14 +5,33 @@ import { useBooksContext } from '../context/BooksContext';
 import { useParams } from 'react-router-dom';
 
 const Book = () => {
-	const { booksData } = useBooksContext();
+	const { booksData, setCartItems } = useBooksContext();
 	const { id } = useParams();
 	const correctId = id - 1;
 	const book = booksData[correctId];
-	const [countBooks, setCountBooks] = useState(0);
+	const [countBooks, setCountBooks] = useState(1);
+	// const [booksOrder, setBooksOrder] = useState([]); // TODO: must be an in global state
+	const orderedBooks = []; // TODO: [] must be an in global state
+
+	const {
+		state: { cart },
+		dispatch,
+	} = useBooksContext();
+
+	// TODO: повинно бути відфільтроване дублювання книжок в глобальному массиві orderedBooks
+	// TODO: не потрібно додавати всю книгу в массив. Просто додати id книги та кількість її замовлених копій, а потім через глобальний стейт все це відображати в корзині
 
 	const handleChange = (e) => {
-		return setCountBooks(e.target.value);
+		if (e.target.value < 0) {
+			return setCountBooks(0);
+		} else {
+			return setCountBooks(e.target.value);
+		}
+	};
+
+	const handleClick = () => {
+		orderedBooks.push(book);
+		return setCartItems(...orderedBooks);
 	};
 
 	return (
@@ -45,23 +64,24 @@ const Book = () => {
 							<input
 								type='number'
 								onChange={handleChange}
-								defaultValue='0'
+								value={countBooks}
 							/>
 						</li>
 						<li className='book__order-total'>
 							<span>Total price</span>
-							<span>${book.price * countBooks}</span>
+							<span>${(book.price * countBooks).toFixed(2)}</span>
 						</li>
 						<li>
-							<Button
-								text='Add to cart'
-								type='submit'
-							/>
-							{/* <span
+							<button
 								className='btn'
-								onClick={() => console.log(booksData[correctId])}>
-								Add to cart
-							</span> */}
+								onClick={() => {
+									dispatch({
+										type: 'ADD_TO_CART',
+										payload: { book, qty: countBooks },
+									});
+								}}>
+								Add to cart 2
+							</button>
 						</li>
 					</ul>
 				</div>

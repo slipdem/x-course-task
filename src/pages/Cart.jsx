@@ -2,7 +2,13 @@ import React from 'react';
 // import cartImage from '../assets/images/cart.svg';
 import { Button, Header } from '../components';
 import HighlightOffRoundedIcon from '@mui/icons-material/HighlightOffRounded';
+import { useBooksContext } from '../context/BooksContext';
+
 const Cart = () => {
+	const {
+		state: { cart },
+	} = useBooksContext();
+
 	return (
 		<>
 			<Header />
@@ -18,30 +24,17 @@ const Cart = () => {
 					</div> */}
 					<div className='cart__items'>
 						<ul className='cart__list'>
-							<li>
-								<span>Book name</span>
-								<span>Count</span>
-								<span>Total Price</span>
-								<HighlightOffRoundedIcon color='primary' />
-							</li>
-							<li>
-								<span>Book name</span>
-								<span>Count</span>
-								<span>Total Price</span>
-								<HighlightOffRoundedIcon color='secondary' />
-							</li>
-							<li>
-								<span>Book name</span>
-								<span>Count</span>
-								<span>Total Price</span>
-								<HighlightOffRoundedIcon color='success' />
-							</li>
-							<li>
-								<span>Book name</span>
-								<span>Count</span>
-								<span>Total Price</span>
-								<HighlightOffRoundedIcon color='disabled' />
-							</li>
+							{cart.map((item) => (
+								<li key={item.book.id}>
+									<p>ID: {item.book.id}</p>
+									<p>Auth: {item.book.author}</p>
+									<p>Title: {item.book.title}</p>
+									<p>Price: ${item.book.price}</p>
+									<p>Qty: {item.qty}</p>
+									<p>Sum: ${(item.book.price * item.qty).toFixed(2)}</p>
+									{/* <HighlightOffRoundedIcon color='primary' /> */}
+								</li>
+							))}
 						</ul>
 						<span>Total price, $113</span>
 					</div>
