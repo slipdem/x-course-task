@@ -8,18 +8,17 @@ const BooksContextProvider = ({ children }) => {
 	const [cartItems, setCartItems] = useState([]);
 	const [state, dispatch] = useReducer(cartReducer, { cart: [] });
 
+	const value = {
+		booksData,
+		setBooksData,
+		cartItems,
+		setCartItems,
+		state,
+		dispatch,
+	};
+
 	return (
-		<BooksContext.Provider
-			value={{
-				booksData,
-				setBooksData,
-				cartItems,
-				setCartItems,
-				state,
-				dispatch,
-			}}>
-			{children}
-		</BooksContext.Provider>
+		<BooksContext.Provider value={value}>{children}</BooksContext.Provider>
 	);
 };
 

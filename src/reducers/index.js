@@ -1,14 +1,25 @@
+const REDUCER_TYPE = {
+	ADD: 'ADD_TO_CART',
+	REMOVE: 'REMOVE_FROM_CART',
+	RESET: 'RESET_CART',
+};
+
 export const cartReducer = (state, action) => {
 	switch (action.type) {
-		case 'ADD_TO_CART':
-			return {
-				...state,
-				cart: [...state.cart, { ...action.payload }],
-			};
-		case 'REMOVE_FROM_CART':
+		case REDUCER_TYPE.ADD:
+		return {
+			...state,
+			cart: [...state.cart, { ...action.payload }],
+		};
+		case REDUCER_TYPE.REMOVE:
 			return {
 				...state,
 				cart: state.cart.filter((c) => c.id !== action.payload.id),
+			};
+		case REDUCER_TYPE.RESET:
+			return {
+				...state,
+				cart: [],
 			};
 		default:
 			return state;

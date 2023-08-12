@@ -1,13 +1,31 @@
-import React from 'react';
-// import cartImage from '../assets/images/cart.svg';
-import { Button, Header } from '../components';
+import React, { useEffect, useState } from 'react';
+import cartImage from '../assets/images/cart.svg';
+import { Button, Header, Footer } from '../components';
 import HighlightOffRoundedIcon from '@mui/icons-material/HighlightOffRounded';
 import { useBooksContext } from '../context/BooksContext';
 
 const Cart = () => {
+	const [totalPrice, setTotalPrice] = useState(0);
+
 	const {
 		state: { cart },
 	} = useBooksContext();
+
+	console.log('cart:', cart);
+
+	const handleTotalPrice = () => {
+		try {
+			cart.reduce((a, b) => {
+				return console.log('reduce', a, b.book);
+			});
+		} catch {
+			console.error('Cart is empty');
+		}
+	};
+
+	useEffect(() => {
+		handleTotalPrice();
+	}, [cart]);
 
 	return (
 		<>
@@ -15,31 +33,47 @@ const Cart = () => {
 			<div className='container'>
 				<Button text='Purchase' />
 				<div className='cart'>
-					{/* <div className='cart__empty'>
-						<img
-							src={cartImage}
-							alt=''
-						/>
-						<p>Cart is empty...</p>
-					</div> */}
-					<div className='cart__items'>
-						<ul className='cart__list'>
-							{cart.map((item) => (
-								<li key={item.book.id}>
-									<p>ID: {item.book.id}</p>
-									<p>Auth: {item.book.author}</p>
-									<p>Title: {item.book.title}</p>
-									<p>Price: ${item.book.price}</p>
-									<p>Qty: {item.qty}</p>
-									<p>Sum: ${(item.book.price * item.qty).toFixed(2)}</p>
-									{/* <HighlightOffRoundedIcon color='primary' /> */}
+					{cart.length !== 0 ? (
+						<div className='cart__items'>
+							<ul className='cart__list'>
+								{cart.map((item) => (
+									<li
+										className='cart__list-item'
+										key={item.book.id}>
+										<div className='cart__product-info'>
+											<span>
+												{item.book.author} - {item.book.title},
+											</span>
+											<span>
+												{item.qty} x ${item.book.price}
+											</span>
+										</div>
+										<p className='cart__product-price'>
+											Total price: ${(item.book.price * item.qty).toFixed(2)}
+										</p>
+									</li>
+								))}
+							</ul>
+							<p className='cart__total-price'>Total price, $113</p>
+						</div>
+					) : (
+						<div className='cart__items'>
+							<ul className='cart__list'>
+								<li className='cart__list-item cart__empty'>
+									<img
+										className='cart__empty-img'
+										src={cartImage}
+										alt='Empty cart'
+									/>
+									<span className='cart__empty-text'>Cart is empty...</span>
 								</li>
-							))}
-						</ul>
-						<span>Total price, $113</span>
-					</div>
+							</ul>
+						</div>
+					)}
 				</div>
 			</div>
+			{/* <HighlightOffRoundedIcon color='primary' /> */}
+			<Footer />
 		</>
 	);
 };

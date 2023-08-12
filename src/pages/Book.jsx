@@ -73,14 +73,14 @@ const Book = () => {
 						</li>
 						<li>
 							<button
-								className='btn'
+								className='btn w100'
 								onClick={() => {
 									dispatch({
 										type: 'ADD_TO_CART',
-										payload: { book, qty: countBooks },
+										payload: { book, qty: +countBooks },
 									});
 								}}>
-								Add to cart 2
+								Add to cart
 							</button>
 						</li>
 					</ul>

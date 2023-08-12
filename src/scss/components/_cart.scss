@@ -1,0 +1,41 @@
+.cart {
+	&__items {
+		margin: 1rem auto;
+	}
+
+	&__list {
+		&-item {
+			@include flex(space-between, center);
+			border: 1px solid $black;
+			padding: 1rem;
+		}
+		&-item + &-item {
+			border-top: none;
+		}
+	}
+	&__product {
+		&-price {
+		}
+		&-info {
+			@include flex(space-between, center);
+			gap: 0.5rem;
+		}
+	}
+	&__total-price {
+		font-size: 1rem;
+		font-weight: 700;
+		text-align: right;
+		margin-top: 1rem;
+	}
+	&__empty {
+		justify-content: center;
+		flex-direction: column;
+		text-align: center;
+		padding: 2rem 1rem;
+		&-img {
+			max-width: 120px;
+		}
+		&-text {
+		}
+	}
+}

@@ -3,11 +3,11 @@ import { BooksContextProvider } from './context/BooksContext';
 
 function App() {
 	return (
-		<main className='App'>
+		<div className='App'>
 			<BooksContextProvider>
 				<AppRouter />
 			</BooksContextProvider>
-		</main>
+		</div>
 	);
 }
 
