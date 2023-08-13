@@ -1,37 +1,27 @@
 import React, { useState } from 'react';
-import { Button, Header } from '../components';
+import { Header } from '../components';
 import noImage from '../assets/images/imageNotFound.png';
 import { useBooksContext } from '../context/BooksContext';
 import { useParams } from 'react-router-dom';
 
 const Book = () => {
-	const { booksData, setCartItems } = useBooksContext();
+	const { booksData, dispatch } = useBooksContext();
 	const { id } = useParams();
 	const correctId = id - 1;
 	const book = booksData[correctId];
 	const [countBooks, setCountBooks] = useState(1);
-	// const [booksOrder, setBooksOrder] = useState([]); // TODO: must be an in global state
-	const orderedBooks = []; // TODO: [] must be an in global state
-
-	const {
-		state: { cart },
-		dispatch,
-	} = useBooksContext();
 
 	// TODO: повинно бути відфільтроване дублювання книжок в глобальному массиві orderedBooks
 	// TODO: не потрібно додавати всю книгу в массив. Просто додати id книги та кількість її замовлених копій, а потім через глобальний стейт все це відображати в корзині
 
 	const handleChange = (e) => {
-		if (e.target.value < 0) {
-			return setCountBooks(0);
+		if (e.target.value < 1) {
+			return setCountBooks(1);
+		} else if (e.target.value > 42) {
+			return setCountBooks(42);
 		} else {
 			return setCountBooks(e.target.value);
 		}
-	};
-
-	const handleClick = () => {
-		orderedBooks.push(book);
-		return setCartItems(...orderedBooks);
 	};
 
 	return (

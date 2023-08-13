@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import cartImage from '../assets/images/cart.svg';
-import { Button, Header, Footer } from '../components';
+import { Header, Footer } from '../components';
 import HighlightOffRoundedIcon from '@mui/icons-material/HighlightOffRounded';
 import { useBooksContext } from '../context/BooksContext';
 
@@ -9,15 +9,19 @@ const Cart = () => {
 
 	const {
 		state: { cart },
+		dispatch,
 	} = useBooksContext();
-
-	console.log('cart:', cart);
 
 	const handleTotalPrice = () => {
 		try {
-			cart.reduce((a, b) => {
-				return console.log('reduce', a, b.book);
+			let itemTotalPrice = cart.map((item) => {
+				return item.book.price * item.qty;
 			});
+
+			let finalCartPrice = itemTotalPrice.reduce((acc, item) => {
+				return acc + item;
+			});
+			setTotalPrice(finalCartPrice);
 		} catch {
 			console.error('Cart is empty');
 		}
@@ -25,13 +29,20 @@ const Cart = () => {
 
 	useEffect(() => {
 		handleTotalPrice();
-	}, [cart]);
+	}, []);
 
 	return (
 		<>
 			<Header />
 			<div className='container'>
-				<Button text='Purchase' />
+				<button
+					className='btn'
+					disabled={cart.length === 0 ? true : false}
+					onClick={() => {
+						dispatch({ type: 'PURCHASE_PRODUCTS' });
+					}}>
+					Purchase
+				</button>
 				<div className='cart'>
 					{cart.length !== 0 ? (
 						<div className='cart__items'>
@@ -54,7 +65,9 @@ const Cart = () => {
 									</li>
 								))}
 							</ul>
-							<p className='cart__total-price'>Total price, $113</p>
+							<p className='cart__total-price'>
+								Total price: ${totalPrice.toFixed(2)}
+							</p>
 						</div>
 					) : (
 						<div className='cart__items'>
@@ -72,7 +85,6 @@ const Cart = () => {
 					)}
 				</div>
 			</div>
-			{/* <HighlightOffRoundedIcon color='primary' /> */}
 			<Footer />
 		</>
 	);
