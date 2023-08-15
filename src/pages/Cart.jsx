@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import cartImage from '../assets/images/cart.svg';
 import { Header, Footer } from '../components';
-import HighlightOffRoundedIcon from '@mui/icons-material/HighlightOffRounded';
 import { useBooksContext } from '../context/BooksContext';
+import AttachMoneyOutlinedIcon from '@mui/icons-material/AttachMoneyOutlined';
 
 const Cart = () => {
 	const [totalPrice, setTotalPrice] = useState(0);
@@ -35,14 +35,17 @@ const Cart = () => {
 		<>
 			<Header />
 			<div className='container'>
-				<button
-					className='btn'
-					disabled={cart.length === 0 ? true : false}
-					onClick={() => {
-						dispatch({ type: 'PURCHASE_PRODUCTS' });
-					}}>
-					Purchase
-				</button>
+				<div className='purchase'>
+					<button
+						className='btn'
+						disabled={cart.length === 0 ? true : false}
+						onClick={() => {
+							dispatch({ type: 'PURCHASE_PRODUCTS' });
+						}}>
+						<span>Purchase</span>
+						<AttachMoneyOutlinedIcon />
+					</button>
+				</div>
 				<div className='cart'>
 					{cart.length !== 0 ? (
 						<div className='cart__items'>

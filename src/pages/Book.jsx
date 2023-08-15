@@ -1,11 +1,16 @@
-import React, { useState } from 'react';
-import { Header } from '../components';
+import React, { useEffect, useState } from 'react';
+import { Footer, Header } from '../components';
 import noImage from '../assets/images/imageNotFound.png';
 import { useBooksContext } from '../context/BooksContext';
 import { useParams } from 'react-router-dom';
+import AddShoppingCartOutlinedIcon from '@mui/icons-material/AddShoppingCartOutlined';
 
 const Book = () => {
-	const { booksData, dispatch } = useBooksContext();
+	const {
+		booksData,
+		dispatch,
+		state: { cart },
+	} = useBooksContext();
 	const { id } = useParams();
 	const correctId = id - 1;
 	const book = booksData[correctId];
@@ -23,6 +28,17 @@ const Book = () => {
 			return setCountBooks(e.target.value);
 		}
 	};
+
+	const getFromLocalStorage = () => {
+		const data = localStorage.getItem('booksOrder');
+		const parsedData = data ? JSON.parse(data) : {};
+		return console.log(parsedData);
+	};
+
+	useEffect(() => {
+		localStorage.setItem('booksOrder', JSON.stringify(cart));
+		getFromLocalStorage();
+	}, [cart]);
 
 	return (
 		<>
@@ -46,11 +62,11 @@ const Book = () => {
 					</div>
 					<ul className='book__order'>
 						<li className='book__order-price'>
-							<span>Price</span>
+							<span className='fw700'>Price</span>
 							<span>${book.price}</span>
 						</li>
 						<li className='book__order-count'>
-							<span>Count</span>
+							<span className='fw700'>Count</span>
 							<input
 								type='number'
 								onChange={handleChange}
@@ -58,7 +74,7 @@ const Book = () => {
 							/>
 						</li>
 						<li className='book__order-total'>
-							<span>Total price</span>
+							<span className='fw700'>Total price</span>
 							<span>${(book.price * countBooks).toFixed(2)}</span>
 						</li>
 						<li>
@@ -70,12 +86,13 @@ const Book = () => {
 										payload: { book, qty: +countBooks },
 									});
 								}}>
-								Add to cart
+								Add to cart{<AddShoppingCartOutlinedIcon />}
 							</button>
 						</li>
 					</ul>
 				</div>
 			</div>
+			<Footer />
 		</>
 	);
 };

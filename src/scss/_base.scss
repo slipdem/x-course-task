@@ -18,6 +18,22 @@ body {
 	background-color: $white;
 }
 
+body * {
+	font-family: 'Roboto', sans-serif;
+}
+
+html,
+body,
+#root,
+.App {
+	height: 100%;
+}
+
+.App {
+	@include flex(space-between, unset);
+	flex-direction: column;
+}
+
 code {
 	font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
 		monospace;
@@ -32,10 +48,6 @@ a {
 	color: unset;
 }
 
-a:hover {
-
-}
-
 img {
 	max-width: 100%;
 	width: 100%;
@@ -45,8 +57,10 @@ img {
 // MISC
 .container {
 	max-width: 1320px;
+	width: 100%;
 	margin: 0 auto;
 	padding: 0 15px;
+	flex-grow: 1;
 }
 
 .hide {
@@ -59,4 +73,12 @@ img {
 
 .w100 {
 	width: 100%;
+}
+
+.fw700 {
+	font-weight: 700;
+}
+
+.h3 {
+	font-size: 1.1rem;
 }

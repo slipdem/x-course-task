@@ -1,11 +1,14 @@
 .btn {
-	display: block;
+	@include flex(center, center);
+	gap: 5px;
 	color: $blue;
 	background-color: $lightblue;
 	font-size: 0.75rem;
-	font-weight: 500;
+	line-height: 1.5;
+	height: 36px;
+	font-weight: 700;
 	padding: 0.5rem 1rem;
-	border: 1px solid $blue;
+	border: 2px solid $blue;
 	border-radius: 1.5rem;
 	text-transform: uppercase;
 	text-align: center;
@@ -15,11 +18,19 @@
 	&:hover {
 		color: $white;
 		background-color: $blue;
-		border-color: $white;
 	}
 	&:disabled {
 		color: $orange;
 		background-color: $lightgray;
 		border-color: $orange;
+		cursor: not-allowed;
+	}
+	&:disabled:hover {
+		background-color: $orange;
+		color: $white;
+	}
+	svg {
+		height: 20px;
+		width: 20px;
 	}
 }

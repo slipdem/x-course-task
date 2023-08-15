@@ -1,7 +1,9 @@
 import { Link, useNavigate } from 'react-router-dom';
 import avatar from '../assets/images/avatar.png';
-import cartImg from '../assets/images/cart.svg';
 import { useBooksContext } from '../context/BooksContext';
+import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
+import ShoppingCartCheckoutOutlinedIcon from '@mui/icons-material/ShoppingCartCheckoutOutlined';
+import ProductionQuantityLimitsOutlinedIcon from '@mui/icons-material/ProductionQuantityLimitsOutlined';
 
 const Header = ({ show = 'flex' }) => {
 	const navigate = useNavigate();
@@ -10,7 +12,8 @@ const Header = ({ show = 'flex' }) => {
 	} = useBooksContext();
 
 	const signOut = () => {
-		localStorage.clear();
+		localStorage.removeItem('validUser');
+		localStorage.removeItem('userName');
 		return navigate('/signin');
 	};
 
@@ -29,15 +32,15 @@ const Header = ({ show = 'flex' }) => {
 				<div className={`user ${show}`}>
 					<Link
 						to='/cart'
-						className='user__cart'>
-						<img
-							src={cartImg}
-							alt='Cart'
-						/>
-						{/* <span className='user__cart-count'>{cartItems.length}</span> */}
+						className='user__cart btn'>
 						<span className='user__cart-count'>
 							{cart.length ? cart.length : 0}
 						</span>
+						{cart.length ? (
+							<ShoppingCartCheckoutOutlinedIcon />
+						) : (
+							<ProductionQuantityLimitsOutlinedIcon />
+						)}
 					</Link>
 					<span className='user__avatar'>
 						<img
@@ -45,16 +48,15 @@ const Header = ({ show = 'flex' }) => {
 							alt='user avatar'
 						/>
 					</span>
-					<span
-						href='.'
-						className='user__profile-link'>
+					<span className='user__profile-link'>
 						{localStorage.getItem('userName')}
 					</span>
-					<span
+					<button
 						className='btn'
 						onClick={() => signOut()}>
-						Sign Out
-					</span>
+						<span>Sign Out</span>
+						<LogoutOutlinedIcon />
+					</button>
 				</div>
 			</nav>
 		</header>

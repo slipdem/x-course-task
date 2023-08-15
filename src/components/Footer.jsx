@@ -1,10 +1,11 @@
 import React from 'react';
 
 const Footer = () => {
+	const actualYear = new Date().getFullYear();
 	return (
 		<footer className='footer'>
 			<div className='footer__content'>
-				<span>© Prometeus, 2023</span>
+				<span>© Prometeus, {actualYear}</span>
 			</div>
 		</footer>
 	);

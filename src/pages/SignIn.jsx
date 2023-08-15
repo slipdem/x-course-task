@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button, Header } from '../components';
+import { Header } from '../components';
 import avatar from '../assets/images/avatar.png';
 import { useNavigate } from 'react-router-dom';
 
@@ -11,7 +11,7 @@ const SingIn = () => {
 
 	const logIn = () => {
 		if (userName) {
-			return navigate('/');
+			return navigate('/books');
 		}
 	};
 
@@ -56,11 +56,12 @@ const SingIn = () => {
 							autoFocus
 							autoComplete='off'
 						/>
-						<Button
+						<button
+							className='btn'
 							type='submit'
-							disabled={disabled}
-							text='Sign In'
-						/>
+							disabled={disabled}>
+							Sign In
+						</button>
 					</div>
 				</div>
 			</form>

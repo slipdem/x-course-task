@@ -14,7 +14,9 @@ const Card = ({ author, price, image, title, id }) => {
 
 			<div className='card__content'>
 				<div className='card__body'>
-					<h3>{title}</h3>
+					<h3 className='h3'>
+						{title.length > 24 ? title.slice(0, 24) + '...' : title}
+					</h3>
 					<p>{author}</p>
 				</div>
 				<div className='card__footer'>

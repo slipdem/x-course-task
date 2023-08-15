@@ -12,7 +12,7 @@
 	transition: all 0.3s ease-in;
 	overflow: hidden;
 	&:hover {
-		box-shadow: 5px 5px 15px 0px rgba(0, 46, 71, 0.25);
+		box-shadow: 5px 5px 5px 0px rgba(0, 46, 71, 0.25);
 	}
 	&__image {
 		img {
@@ -38,6 +38,7 @@
 		width: 100%;
 		margin-top: 0.5rem;
 		.card__price {
+			font-size: 1.1rem;
 			font-weight: 500;
 		}
 		.btn {

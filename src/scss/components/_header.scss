@@ -1,6 +1,4 @@
 .header {
-	position: sticky;
-	top: 0;
 	margin-bottom: 1rem;
 	border-bottom: 1px solid $lightgray;
 	padding: 0.5rem 1rem;
@@ -44,16 +42,12 @@
 		padding-left: 1.5rem;
 		gap: 1rem;
 		&__cart {
-			position: relative;
-			width: 2.5rem;
-			height: 2.5rem;
-			&-count {
-				position: absolute;
-				top: 3px;
-				left: -13px;
-				font-size: 1.5rem;
-				font-weight: 700;
-				color: $orange;
+			font-size: 1.5rem;
+			// position: relative;
+			// width: 2.5rem;
+			// height: 2.5rem;
+			svg {
+				height: 1.5rem;
 			}
 		}
 		&__avatar {
