@@ -28,7 +28,8 @@ const Book = () => {
 			return setCountBooks(e.target.value);
 		}
 	};
-
+	// TODO: make it work with cart on singIn
+	// is it must be placed on books page??
 	const getFromLocalStorage = () => {
 		const data = localStorage.getItem('booksOrder');
 		const parsedData = data ? JSON.parse(data) : {};
