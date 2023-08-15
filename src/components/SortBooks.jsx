@@ -2,17 +2,17 @@ import React from 'react';
 import { useBooksContext } from '../context/BooksContext';
 
 const SortBooks = () => {
-	const { booksData } = useBooksContext();
+	const { booksData, setBooksData } = useBooksContext();
 
-	const handleChange = (evnt) => {
-		if (evnt === 'all') {
-			return booksData;
-		} else if (evnt === 'less15') {
-			return booksData.filter((book) => book.price < 15);
-		} else if (evnt === '15to30') {
-			return booksData.filter((book) => book.price >= 15 && book.price < 30);
-		} else if (evnt === 'more30') {
-			return booksData.filter((book) => book.price >= 30);
+	const handleChange = (event) => {
+		if (event === 'all') {
+			return console.log(booksData);
+		} else if (event === 'less15') {
+			return console.log(booksData.filter((book) => book.price < 15));
+		} else if (event === '15to30') {
+			return console.log(booksData.filter((book) => book.price >= 15 && book.price < 30));
+		} else if (event === 'more30') {
+			return console.log(booksData.filter((book) => book.price >= 30));
 		}
 		return booksData;
 	};
@@ -21,7 +21,7 @@ const SortBooks = () => {
 		<select
 			className='books__sort-select'
 			name='bookSort'
-			id='selectBookSort'
+			id='selectBooksSort'
 			defaultValue='all'
 			onChange={(e) => handleChange(e.target.value)}>
 			<option value='all'>all</option>

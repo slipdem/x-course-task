@@ -33,7 +33,7 @@ const Book = () => {
 	const getFromLocalStorage = () => {
 		const data = localStorage.getItem('booksOrder');
 		const parsedData = data ? JSON.parse(data) : {};
-		return console.log(parsedData);
+		return console.log('parsed localStorage from Book.jsx: ', parsedData);
 	};
 
 	useEffect(() => {

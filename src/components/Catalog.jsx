@@ -9,7 +9,7 @@ const Catalog = () => {
 			const data = await (await fetch('../assets/fake-data/books.json')).json();
 			setBooksData(data.books);
 		} catch (error) {
-			console.error(error);
+			console.error('Error in data fetch', error);
 		}
 	};
 

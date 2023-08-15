@@ -9,7 +9,7 @@ const REDUCER_TYPE = {
 };
 
 export const cartReducer = (state, action) => {
-	console.log(state);
+	console.log('cartReducer state: ', state.cart);
 	switch (action.type) {
 		case REDUCER_TYPE.ADD:
 			return {
