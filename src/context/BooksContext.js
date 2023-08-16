@@ -1,5 +1,5 @@
 import { createContext, useContext, useReducer, useState } from 'react';
-import { cartReducer } from '../reducers/reducers';
+import { booksReducer } from '../reducers/reducers';
 
 const BooksContext = createContext();
 
@@ -11,7 +11,7 @@ const initialState = {
 
 const BooksContextProvider = ({ children }) => {
 	const [booksData, setBooksData] = useState([]);
-	const [state, dispatch] = useReducer(cartReducer, initialState);
+	const [state, dispatch] = useReducer(booksReducer, initialState);
 
 	const value = {
 		booksData,
