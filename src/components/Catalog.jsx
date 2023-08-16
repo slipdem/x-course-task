@@ -1,26 +1,56 @@
-import { useEffect } from 'react';
-import { Card, BooksHeader } from '.';
+import { useEffect, useState } from 'react';
+import { Card } from '.';
 import { useBooksContext } from '../context/BooksContext';
+
 const Catalog = () => {
-	const {
-		dispatch,
-		state: { books },
-	} = useBooksContext();
+	const { dispatch } = useBooksContext();
+
+	const [catalog, setCatalog] = useState([]);
+	const [filteredCatalog, setFilteredCatalog] = useState([]);
+	const [searchValue, setSearchValue] = useState('');
+
+	const dataFetch = async () => {
+		try {
+			const getData = await (
+				await fetch('../assets/fake-data/books.json')
+			).json();
+			const resultData = getData.books;
+
+			setCatalog(resultData);
+			setFilteredCatalog(resultData);
+			dispatch({
+				type: 'FETCH',
+				payload: { data: resultData },
+			});
+		} catch (error) {
+			console.error('Error in data fetch: ', error);
+		}
+	};
+
+	const handleChange = (event) => {
+		if (event === 'all') {
+			return dataFetch();
+		} else if (event === 'less15') {
+			return setCatalog(filteredCatalog.filter((book) => book.price < 15));
+		} else if (event === '15to30') {
+			return setCatalog(
+				filteredCatalog.filter((book) => book.price >= 15 && book.price < 30),
+			);
+		} else if (event === 'more30') {
+			return setCatalog(filteredCatalog.filter((book) => book.price >= 30));
+		}
+	};
 
 	useEffect(() => {
-		const dataFetch = async () => {
-			try {
-				const getData = await (
-					await fetch('../assets/fake-data/books.json')
-				).json();
-
-				dispatch({ type: 'FETCH', payload: { data: getData.books } });
-			} catch (error) {
-				console.error('Error in data fetch', error);
-			}
-		};
 		dataFetch();
 	}, []);
+
+	useEffect(() => {
+		const searchResult = filteredCatalog.filter((item) =>
+			item.title.toLowerCase().includes(searchValue),
+		);
+		setCatalog(searchResult);
+	}, [searchValue]);
 
 	return (
 		<section className='books'>
@@ -31,14 +61,15 @@ const Catalog = () => {
 					name='search'
 					id='bookSearch'
 					placeholder='Search book by name'
+					onChange={(e) => setSearchValue(e.target.value)}
+					value={searchValue}
 				/>
 				<select
 					className='books__sort-select'
 					name='bookSort'
 					id='selectBooksSort'
 					defaultValue='all'
-					// onChange={(e) => handleChange(e.target.value)}
-				>
+					onChange={(e) => handleChange(e.target.value)}>
 					<option value='all'>all</option>
 					<option value='less15'>0 to 15</option>
 					<option value='15to30'>15 to 30</option>
@@ -46,20 +77,16 @@ const Catalog = () => {
 				</select>
 			</div>
 			<div className='books__catalog'>
-				{books.data === undefined ? (
-					<h2>Loading data...</h2>
-				) : (
-					books.data.map((book) => (
-						<Card
-							key={book.id}
-							id={book.id}
-							author={book.author}
-							price={book.price}
-							image={book.image}
-							title={book.title}
-						/>
-					))
-				)}
+				{catalog.map((book) => (
+					<Card
+						key={book.id}
+						id={book.id}
+						author={book.author}
+						price={book.price}
+						image={book.image}
+						title={book.title}
+					/>
+				))}
 			</div>
 		</section>
 	);

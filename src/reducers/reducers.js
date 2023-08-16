@@ -1,39 +1,53 @@
 const REDUCER_TYPE = {
 	FETCH: 'FETCH',
+	FILTERED: 'FILTERED',
 	ADD: 'ADD_TO_CART',
 	REMOVE: 'REMOVE_FROM_CART',
 	PURCHASE: 'PURCHASE_PRODUCTS',
-	SORTALL: 'SORT_ALL_BOOKS',
-	SORTLESS15: 'SORT_BOOKS_LESS_15',
-	SORT15TO30: 'SORT_BOOKS_15_TO_30',
-	SORTUP30: 'SORT_BOOKS_UP_30',
+	SHOWALL: 'SHOW_ALL_BOOKS',
+	SHOWLESS15: 'SHOW_BOOKS_LESS_15',
+	SHOW15TO30: 'SHOW_BOOKS_15_TO_30',
+	SHOWUP30: 'SHOW_BOOKS_UP_30',
+	SEARCH: 'SEARCH_BOOK',
 };
 
 export const booksReducer = (state, action) => {
-	switch (action.type) {
+	const { type, payload } = action;
+	switch (type) {
 		// get books
 		case REDUCER_TYPE.FETCH:
-			return { ...state, books: { ...action.payload } };
-		// cart reducer
+			return { ...state, books: { ...payload } };
+		case REDUCER_TYPE.FILTERED:
+			return { ...state, filtered: { ...payload } };
+		// cart
 		case REDUCER_TYPE.ADD:
 			return {
 				...state,
-				cart: [...state.cart, { ...action.payload }],
+				cart: [...state.cart, { ...payload }],
 			};
-		case REDUCER_TYPE.REMOVE:
-			return {
-				...state,
-				cart: state.cart.filter((c) => c.id !== action.payload.id),
-			};
-		// filter types
-		case REDUCER_TYPE.SORTALL:
-			return state;
-		case REDUCER_TYPE.SORTLESS15:
+
+		// filters
+		case REDUCER_TYPE.SHOWALL:
+			// return state;
 			return { ...state, filtered: { ...state.books.data } };
-		case REDUCER_TYPE.SORT15TO30:
-			return { ...state, books: { ...action.payload } };
-		case REDUCER_TYPE.SORTUP30:
-			return { ...state, books: { ...action.payload } };
+		case REDUCER_TYPE.SHOWLESS15: {
+			const less15 = state.books.data.filter((book) => book.price < 15);
+			return { ...state, filtered: { ...less15 } };
+		}
+		case REDUCER_TYPE.SHOW15TO30: {
+			const show15to30 = state.books.data.filter(
+				(book) => book.price >= 15 && book.price < 30,
+			);
+			return { ...state, filtered: { ...show15to30 } };
+		}
+		case REDUCER_TYPE.SHOWUP30:
+			const up30 = state.books.data.filter((book) => book.price >= 30);
+			return { ...state, filtered: { ...up30 } };
+
+		// search
+		case REDUCER_TYPE.SEARCH_BOOK:
+			return { ...state };
+
 		// buy books
 		case REDUCER_TYPE.PURCHASE:
 			return (
@@ -43,6 +57,7 @@ export const booksReducer = (state, action) => {
 					cart: [],
 				}
 			);
+
 		default:
 			return state;
 	}
