@@ -1,11 +1,17 @@
 import { createContext, useContext, useReducer, useState } from 'react';
-import { cartReducer } from '../reducers';
+import { cartReducer } from '../reducers/reducers';
 
 const BooksContext = createContext();
 
+const initialState = {
+	cart: [],
+	filtered: [],
+	books: []
+};
+
 const BooksContextProvider = ({ children }) => {
 	const [booksData, setBooksData] = useState([]);
-	const [state, dispatch] = useReducer(cartReducer, { cart: [] });
+	const [state, dispatch] = useReducer(cartReducer, initialState);
 
 	const value = {
 		booksData,

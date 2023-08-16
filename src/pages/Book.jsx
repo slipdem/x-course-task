@@ -7,13 +7,12 @@ import AddShoppingCartOutlinedIcon from '@mui/icons-material/AddShoppingCartOutl
 
 const Book = () => {
 	const {
-		booksData,
 		dispatch,
-		state: { cart },
+		state: { cart, books },
 	} = useBooksContext();
 	const { id } = useParams();
 	const correctId = id - 1;
-	const book = booksData[correctId];
+	const book = books.data[correctId];
 	const [countBooks, setCountBooks] = useState(1);
 
 	// TODO: повинно бути відфільтроване дублювання книжок в глобальному массиві orderedBooks
