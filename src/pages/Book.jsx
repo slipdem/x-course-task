@@ -15,9 +15,6 @@ const Book = () => {
 	const book = books.data[correctId];
 	const [countBooks, setCountBooks] = useState(1);
 
-	// TODO: повинно бути відфільтроване дублювання книжок в глобальному массиві orderedBooks
-	// TODO: не потрібно додавати всю книгу в массив. Просто додати id книги та кількість її замовлених копій, а потім через глобальний стейт все це відображати в корзині
-
 	const handleChange = (e) => {
 		if (e.target.value < 1) {
 			return setCountBooks(1);
@@ -27,8 +24,7 @@ const Book = () => {
 			return setCountBooks(e.target.value);
 		}
 	};
-	// TODO: make it work with cart on singIn
-	// is it must be placed on books page??
+
 	const getFromLocalStorage = () => {
 		const data = localStorage.getItem('booksOrder');
 		const parsedData = data ? JSON.parse(data) : {};
