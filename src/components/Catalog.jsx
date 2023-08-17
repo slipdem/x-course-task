@@ -12,8 +12,12 @@ const Catalog = () => {
 	const dataFetch = async () => {
 		try {
 			const getData = await (
-				await fetch('../assets/fake-data/books.json')
-			).json();
+				await fetch(
+					'https://slipdem.github.io/x-course-task/assets/fake-data/books.json',
+				)
+			)
+				// await fetch('../assets/fake-data/books.json')
+				.json();
 			const resultData = getData.books;
 
 			setCatalog(resultData);
