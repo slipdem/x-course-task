@@ -42,6 +42,12 @@ const Header = ({ show = 'flex' }) => {
 							<ProductionQuantityLimitsOutlinedIcon />
 						)}
 					</Link>
+					<button
+						className='btn'
+						onClick={() => signOut()}>
+						<span>Sign Out</span>
+						<LogoutOutlinedIcon />
+					</button>
 					<span className='user__avatar'>
 						<img
 							src={avatar}
@@ -51,12 +57,6 @@ const Header = ({ show = 'flex' }) => {
 					<span className='user__profile-link'>
 						{localStorage.getItem('userName')}
 					</span>
-					<button
-						className='btn'
-						onClick={() => signOut()}>
-						<span>Sign Out</span>
-						<LogoutOutlinedIcon />
-					</button>
 				</div>
 			</nav>
 		</header>
