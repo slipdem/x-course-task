@@ -1,9 +1,47 @@
-.purchase{
-  @include flex(flex-end, center);
+.purchase {
+	@include flex(space-between, center);
 }
 .cart {
 	&__items {
 		margin: 1rem auto;
+	}
+
+	&__table {
+		width: 100%;
+		margin: 1rem auto;
+		border-collapse: collapse;
+		text-align: center;
+		&-head {
+			color: $white;
+			border: 1px solid $black;
+			background-color: $blue;
+			text-transform: uppercase;
+		}
+		&-body {
+			border: 1px solid $black;
+			& tr:nth-child(even) {
+				background-color: $lightblue;
+			}
+		}
+		&-footer {
+		}
+
+		& th,
+		& td {
+			padding: 5px;
+		}
+	}
+	&__book-author {
+		text-align: left;
+	}
+	&__book-title {
+		text-align: left;
+	}
+	&__book-qty {
+	}
+	&__book-price {
+	}
+	&__book-sum {
 	}
 
 	&__list {
@@ -17,18 +55,18 @@
 		}
 	}
 	&__product {
-		&-price {
-		}
 		&-info {
 			@include flex(space-between, center);
 			gap: 0.5rem;
 		}
 	}
 	&__total-price {
+		background-color: $blue;
+		color: $white;
+		border: 1px solid $black;
 		font-size: 1rem;
 		font-weight: 700;
-		text-align: right;
-		margin-top: 1rem;
+		text-align: center;
 	}
 	&__empty {
 		justify-content: center;
@@ -37,8 +75,6 @@
 		padding: 2rem 1rem;
 		&-img {
 			max-width: 120px;
-		}
-		&-text {
 		}
 	}
 }

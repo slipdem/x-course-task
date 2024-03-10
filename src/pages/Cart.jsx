@@ -3,6 +3,7 @@ import cartImage from '../assets/images/cart.svg';
 import { Header, Footer } from '../components';
 import { useBooksContext } from '../context/BooksContext';
 import AttachMoneyOutlinedIcon from '@mui/icons-material/AttachMoneyOutlined';
+import DeleteForeverOutlinedIcon from '@mui/icons-material/DeleteForeverOutlined';
 
 const Cart = () => {
 	const [totalPrice, setTotalPrice] = useState(0);
@@ -35,43 +36,43 @@ const Cart = () => {
 		<>
 			<Header />
 			<div className='container'>
-				<div className='purchase'>
-					<button
-						className='btn'
-						disabled={cart.length === 0 ? true : false}
-						onClick={() => {
-							dispatch({ type: 'PURCHASE_PRODUCTS' });
-						}}>
-						<span>Purchase</span>
-						<AttachMoneyOutlinedIcon />
-					</button>
-				</div>
 				<div className='cart'>
 					{cart.length !== 0 ? (
-						<div className='cart__items'>
-							<ul className='cart__list'>
+						<table className='cart__table'>
+							<thead className='cart__table-head'>
+								<tr>
+									<th>Author</th>
+									<th>Title</th>
+									<th>Qty</th>
+									<th>Price</th>
+									<th>Total Price</th>
+								</tr>
+							</thead>
+							<tbody className='cart__table-body'>
 								{cart.map((item) => (
-									<li
-										className='cart__list-item'
-										key={item.book.id}>
-										<div className='cart__product-info'>
-											<span>
-												{item.book.author} - {item.book.title},
-											</span>
-											<span>
-												{item.qty} x ${item.book.price}
-											</span>
-										</div>
-										<p className='cart__product-price'>
-											Total price: ${(item.book.price * item.qty).toFixed(2)}
-										</p>
-									</li>
+									<tr key={item.book.id}>
+										<td className='cart__book-author'>{item.book.author}</td>
+										<td className='cart__book-title'>{item.book.title}</td>
+										<td className='cart__book-qty'>{item.qty}</td>
+										<td className='cart__book-price'>$ {item.book.price}</td>
+										<td className='cart__book-sum'>
+											$ {(item.book.price * item.qty).toFixed(2)}
+										</td>
+									</tr>
 								))}
-							</ul>
-							<p className='cart__total-price'>
-								Total price: ${totalPrice.toFixed(2)}
-							</p>
-						</div>
+							</tbody>
+							<tfoot className='cart__table-footer'>
+								<tr>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td className='cart__total-price'>
+										Total price: $ {totalPrice.toFixed(2)}
+									</td>
+								</tr>
+							</tfoot>
+						</table>
 					) : (
 						<div className='cart__items'>
 							<ul className='cart__list'>
@@ -86,6 +87,26 @@ const Cart = () => {
 							</ul>
 						</div>
 					)}
+				</div>
+				<div className='purchase'>
+					<button
+						className='btn'
+						disabled={cart.length === 0 ? true : false}
+						onClick={() => {
+							dispatch({ type: 'PURCHASE_PRODUCTS' });
+						}}>
+						<span>Clear cart</span>
+						<DeleteForeverOutlinedIcon />
+					</button>
+					<button
+						className='btn'
+						disabled={cart.length === 0 ? true : false}
+						onClick={() => {
+							dispatch({ type: 'PURCHASE_PRODUCTS' });
+						}}>
+						<span>Purchase</span>
+						<AttachMoneyOutlinedIcon />
+					</button>
 				</div>
 			</div>
 			<Footer />
