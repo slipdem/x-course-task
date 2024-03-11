@@ -15,9 +15,7 @@ const Catalog = () => {
 				await fetch(
 					'https://slipdem.github.io/x-course-task/assets/fake-data/books.json',
 				)
-			)
-				// await fetch('../assets/fake-data/books.json')
-				.json();
+			).json();
 			const resultData = getData.books;
 
 			setCatalog(resultData);
@@ -84,6 +82,7 @@ const Catalog = () => {
 				{catalog.map((book) => (
 					<Card
 						key={book.id}
+						book={book}
 						id={book.id}
 						author={book.author}
 						price={book.price}

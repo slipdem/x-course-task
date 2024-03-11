@@ -43,6 +43,22 @@
 	}
 	&__book-sum {
 	}
+	&__book-remove {
+		width: 20px;
+		&-container {
+			@include flex(center, center);
+			flex-direction: column;
+			cursor: pointer;
+			svg {
+				width: 15px;
+				height: 15px;
+				fill: $blue;
+			}
+			&:hover svg {
+				fill: $orangeHover;
+			}
+		}
+	}
 
 	&__list {
 		&-item {
@@ -61,12 +77,12 @@
 		}
 	}
 	&__total-price {
-		background-color: $blue;
-		color: $white;
-		border: 1px solid $black;
 		font-size: 1rem;
 		font-weight: 700;
-		text-align: center;
+		color: $white;
+		background-color: $blue;
+		border: 1px solid $black;
+		text-align: right;
 	}
 	&__empty {
 		justify-content: center;

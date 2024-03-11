@@ -3,6 +3,7 @@ const REDUCER_TYPE = {
 	FILTERED: 'FILTERED',
 	ADD: 'ADD_TO_CART',
 	REMOVE: 'REMOVE_FROM_CART',
+	CLEAR: 'CLEAR_CART',
 	PURCHASE: 'PURCHASE_PRODUCTS',
 	SHOWALL: 'SHOW_ALL_BOOKS',
 	SHOWLESS15: 'SHOW_BOOKS_LESS_15',
@@ -12,24 +13,47 @@ const REDUCER_TYPE = {
 };
 
 export const booksReducer = (state, action) => {
-	const { type, payload } = action;
+	const { type, id, payload } = action;
 	switch (type) {
-		// get books
-		case REDUCER_TYPE.FETCH:
+		// GET BOOKS
+		case REDUCER_TYPE.FETCH: {
 			return { ...state, books: { ...payload } };
-		case REDUCER_TYPE.FILTERED:
+		}
+		case REDUCER_TYPE.FILTERED: {
 			return { ...state, filtered: { ...payload } };
-		// cart
-		case REDUCER_TYPE.ADD:
+		}
+
+		// CART
+		// add item to cart
+		case REDUCER_TYPE.ADD: {
 			return {
 				...state,
 				cart: [...state.cart, { ...payload }],
 			};
+		}
+		// remove item from cart
+		case REDUCER_TYPE.REMOVE: {
+			const newCart = state.cart.filter((item) => {
+				return item.book.id !== id;
+			});
+			return {
+				...state,
+				cart: [...newCart],
+			};
+		}
+		// remove all items from cart
+		case REDUCER_TYPE.CLEAR: {
+			return {
+				...state,
+				cart: [],
+			};
+		}
 
-		// filters
-		case REDUCER_TYPE.SHOWALL:
+		// FILTERS
+		case REDUCER_TYPE.SHOWALL: {
 			// return state;
 			return { ...state, filtered: { ...state.books.data } };
+		}
 		case REDUCER_TYPE.SHOWLESS15: {
 			const less15 = state.books.data.filter((book) => book.price < 15);
 			return { ...state, filtered: { ...less15 } };
@@ -40,16 +64,18 @@ export const booksReducer = (state, action) => {
 			);
 			return { ...state, filtered: { ...show15to30 } };
 		}
-		case REDUCER_TYPE.SHOWUP30:
+		case REDUCER_TYPE.SHOWUP30: {
 			const up30 = state.books.data.filter((book) => book.price >= 30);
 			return { ...state, filtered: { ...up30 } };
+		}
 
-		// search
-		case REDUCER_TYPE.SEARCH_BOOK:
+		// SEARCH
+		case REDUCER_TYPE.SEARCH_BOOK: {
 			return { ...state };
+		}
 
-		// buy books
-		case REDUCER_TYPE.PURCHASE:
+		// BUY BOOKS
+		case REDUCER_TYPE.PURCHASE: {
 			return (
 				localStorage.removeItem('booksOrder'),
 				{
@@ -57,6 +83,7 @@ export const booksReducer = (state, action) => {
 					cart: [],
 				}
 			);
+		}
 
 		default:
 			return state;

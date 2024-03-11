@@ -45,7 +45,11 @@ const AppRouter = () => {
 		);
 	}
 
-	return localStorage.getItem('validUser') === 'true' ? (
+	const isUserAuthenticated = () => {
+		return localStorage.getItem('validUser') === 'true';
+	};
+
+	return isUserAuthenticated ? (
 		<Routes>
 			<Route
 				path='*'

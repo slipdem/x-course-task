@@ -4,6 +4,7 @@ import { Header, Footer } from '../components';
 import { useBooksContext } from '../context/BooksContext';
 import AttachMoneyOutlinedIcon from '@mui/icons-material/AttachMoneyOutlined';
 import DeleteForeverOutlinedIcon from '@mui/icons-material/DeleteForeverOutlined';
+import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
 
 const Cart = () => {
 	const [totalPrice, setTotalPrice] = useState(0);
@@ -15,7 +16,7 @@ const Cart = () => {
 
 	const handleTotalPrice = () => {
 		try {
-			let itemTotalPrice = cart.map((item) => {
+			let itemTotalPrice = cart?.map((item) => {
 				return item.book.price * item.qty;
 			});
 
@@ -24,7 +25,7 @@ const Cart = () => {
 			});
 			setTotalPrice(finalCartPrice);
 		} catch {
-			console.error('Cart is empty');
+			console.log('Cart is empty');
 		}
 	};
 
@@ -37,7 +38,7 @@ const Cart = () => {
 			<Header />
 			<div className='container'>
 				<div className='cart'>
-					{cart.length !== 0 ? (
+					{cart?.length !== 0 ? (
 						<table className='cart__table'>
 							<thead className='cart__table-head'>
 								<tr>
@@ -46,10 +47,11 @@ const Cart = () => {
 									<th>Qty</th>
 									<th>Price</th>
 									<th>Total Price</th>
+									<th></th>
 								</tr>
 							</thead>
 							<tbody className='cart__table-body'>
-								{cart.map((item) => (
+								{cart?.map((item) => (
 									<tr key={item.book.id}>
 										<td className='cart__book-author'>{item.book.author}</td>
 										<td className='cart__book-title'>{item.book.title}</td>
@@ -58,16 +60,26 @@ const Cart = () => {
 										<td className='cart__book-sum'>
 											$ {(item.book.price * item.qty).toFixed(2)}
 										</td>
+										<td className='cart__book-remove'>
+											<span
+												className='cart__book-remove-container'
+												onClick={() => {
+													dispatch({
+														type: 'REMOVE_FROM_CART',
+														id: item.book.id,
+													});
+												}}>
+												<CloseOutlinedIcon />
+											</span>
+										</td>
 									</tr>
 								))}
 							</tbody>
 							<tfoot className='cart__table-footer'>
 								<tr>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td className='cart__total-price'>
+									<td
+										colSpan='6'
+										className='cart__total-price'>
 										Total price: $ {totalPrice.toFixed(2)}
 									</td>
 								</tr>
@@ -91,16 +103,16 @@ const Cart = () => {
 				<div className='purchase'>
 					<button
 						className='btn'
-						disabled={cart.length === 0 ? true : false}
+						disabled={cart?.length === 0 ? true : false}
 						onClick={() => {
-							dispatch({ type: 'PURCHASE_PRODUCTS' });
+							dispatch({ type: 'CLEAR_CART' });
 						}}>
 						<span>Clear cart</span>
 						<DeleteForeverOutlinedIcon />
 					</button>
 					<button
 						className='btn'
-						disabled={cart.length === 0 ? true : false}
+						disabled={cart?.length === 0 ? true : false}
 						onClick={() => {
 							dispatch({ type: 'PURCHASE_PRODUCTS' });
 						}}>
