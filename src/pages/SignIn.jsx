@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { Header } from '../components';
 import avatar from '../assets/images/avatar.png';
 import { useNavigate } from 'react-router-dom';
 
@@ -29,43 +28,41 @@ const SingIn = () => {
 	};
 
 	return (
-		<>
-			<Header show='hide' />
-			<form
-				className='signIn'
-				onSubmit={(e) => {
-					e.preventDefault();
-					logIn();
-				}}>
-				<div className='signIn-user'>
-					<div className='signIn-user__img'>
-						<img
-							src={avatar}
-							alt='user avatar'
-						/>
-					</div>
-					<div className='signIn-user__input'>
-						<label htmlFor='usernameInput'>UserName</label>
-						<input
-							type='text'
-							name='username'
-							id='usernameInput'
-							placeholder='Type your username'
-							value={validUserName}
-							onChange={(e) => handleInputChange(e.target.value.trim())}
-							autoFocus
-							autoComplete='off'
-						/>
-						<button
-							className='btn'
-							type='submit'
-							disabled={disabled}>
-							Sign In
-						</button>
-					</div>
+		// <Header show='hide' />
+		<form
+			className='signIn'
+			onSubmit={(e) => {
+				e.preventDefault();
+				logIn();
+			}}>
+			<div className='signIn-user'>
+				<div className='signIn-user__img'>
+					<img
+						src={avatar}
+						alt='user avatar'
+					/>
 				</div>
-			</form>
-		</>
+				<div className='signIn-user__input'>
+					<label htmlFor='usernameInput'>UserName</label>
+					<input
+						type='text'
+						name='username'
+						id='usernameInput'
+						placeholder='Type your username'
+						value={validUserName}
+						onChange={(e) => handleInputChange(e.target.value.trim())}
+						autoFocus
+						autoComplete='off'
+					/>
+					<button
+						className='btn'
+						type='submit'
+						disabled={disabled}>
+						Sign In
+					</button>
+				</div>
+			</div>
+		</form>
 	);
 };
 

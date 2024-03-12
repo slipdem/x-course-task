@@ -1,35 +1,38 @@
 import React from 'react';
 import { Books, Book, Cart, SignIn, Error404 } from '../pages';
 import { Route, Routes } from 'react-router-dom';
+import Layout from './Layout';
 
 const AppRouter = () => {
 	function PrivateLinks() {
 		return (
 			<Routes>
-				<Route
-					path='/'
-					element={<Books />}
-				/>
-				<Route
-					path='/books'
-					element={<Books />}
-				/>
-				<Route
-					path='/books/:id'
-					element={<Book />}
-				/>
-				<Route
-					path='/cart'
-					element={<Cart />}
-				/>
-				<Route
-					path='/signin'
-					element={<SignIn />}
-				/>
-				<Route
-					path='*'
-					element={<Error404 />}
-				/>
+				<Route element={<Layout />}>
+					<Route
+						path='/'
+						element={<Books />}
+					/>
+					<Route
+						path='/books'
+						element={<Books />}
+					/>
+					<Route
+						path='/books/:id'
+						element={<Book />}
+					/>
+					<Route
+						path='/cart'
+						element={<Cart />}
+					/>
+					<Route
+						path='/signin'
+						element={<SignIn />}
+					/>
+					<Route
+						path='*'
+						element={<Error404 />}
+					/>
+				</Route>
 			</Routes>
 		);
 	}
@@ -37,10 +40,12 @@ const AppRouter = () => {
 	function PublicLinks() {
 		return (
 			<Routes>
-				<Route
-					path='*'
-					element={<SignIn />}
-				/>
+				<Route element={<Layout />}>
+					<Route
+						path='*'
+						element={<SignIn />}
+					/>
+				</Route>
 			</Routes>
 		);
 	}

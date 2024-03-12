@@ -1,16 +1,8 @@
 import React from 'react';
-import { Header, Catalog, Footer } from '../components';
+import { Catalog } from '../components';
 
 const Books = () => {
-	return (
-		<>
-			<Header />
-			<div className='container'>
-				<Catalog />
-			</div>
-			<Footer />
-		</>
-	);
+	return <Catalog />;
 };
 
 export default Books;

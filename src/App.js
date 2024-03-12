@@ -1,4 +1,4 @@
-import { AppRouter } from './components';
+import AppRouter from './layout/AppRouter';
 import { BooksContextProvider } from './context/BooksContext';
 
 function App() {

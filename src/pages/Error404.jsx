@@ -1,12 +1,20 @@
 import React from 'react';
-import { Header } from '../components';
+import ufo from '../assets/images/ufo.png';
 
 const Error404 = () => {
 	return (
 		<>
-			<Header />
-			<div className='container'>
-				<h1>404 ;(</h1>
+			<div className='page404'>
+				<img
+					className='page404__image'
+					src={ufo}
+					alt='i want to belive'
+				/>
+
+				<h1 className='page404__title'>
+					There is no such page here,
+					<br /> only 404 ;(
+				</h1>
 			</div>
 		</>
 	);
