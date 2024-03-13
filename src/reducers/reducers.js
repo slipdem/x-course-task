@@ -14,6 +14,7 @@ const REDUCER_TYPE = {
 
 export const booksReducer = (state, action) => {
 	const { type, id, payload } = action;
+
 	switch (type) {
 		// GET BOOKS
 		case REDUCER_TYPE.FETCH: {
@@ -26,6 +27,16 @@ export const booksReducer = (state, action) => {
 		// CART
 		// add item to cart
 		case REDUCER_TYPE.ADD: {
+			// console.log(payload.book.id);
+			// console.log(payload.qty);
+			// console.log(state.cart);
+
+			const cartItem = state.cart.find((item) => {
+				return item.book.id === payload.book.id;
+			});
+
+			console.log('cartItem id: ', cartItem);
+
 			return {
 				...state,
 				cart: [...state.cart, { ...payload }],

@@ -7,7 +7,7 @@ const Card = ({ book, author, price, image, title, id }) => {
 	const { dispatch } = useBooksContext();
 	return (
 		<div className='card'>
-			<Link to={`/books/${id}`}>
+			<Link to={`/book/${id}`}>
 				<div className='card__image'>
 					<img
 						src={image ? image : noImage}

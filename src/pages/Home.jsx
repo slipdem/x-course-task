@@ -1,8 +1,8 @@
 import React from 'react';
 import { Catalog } from '../components';
 
-const Books = () => {
+const Home = () => {
 	return <Catalog />;
 };
 
-export default Books;
+export default Home;

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Books, Book, Cart, SignIn, Error404 } from '../pages';
+import { Home, Book, Cart, SignIn, Page404 } from '../pages';
 import { Route, Routes } from 'react-router-dom';
 import Layout from './Layout';
 
@@ -10,14 +10,10 @@ const AppRouter = () => {
 				<Route element={<Layout />}>
 					<Route
 						path='/'
-						element={<Books />}
+						element={<Home />}
 					/>
 					<Route
-						path='/books'
-						element={<Books />}
-					/>
-					<Route
-						path='/books/:id'
+						path='/book/:id'
 						element={<Book />}
 					/>
 					<Route
@@ -30,7 +26,7 @@ const AppRouter = () => {
 					/>
 					<Route
 						path='*'
-						element={<Error404 />}
+						element={<Page404 />}
 					/>
 				</Route>
 			</Routes>

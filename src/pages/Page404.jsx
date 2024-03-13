@@ -1,7 +1,7 @@
 import React from 'react';
 import ufo from '../assets/images/ufo.png';
 
-const Error404 = () => {
+const Page404 = () => {
 	return (
 		<>
 			<div className='page404'>
@@ -20,4 +20,4 @@ const Error404 = () => {
 	);
 };
 
-export default Error404;
+export default Page404;
