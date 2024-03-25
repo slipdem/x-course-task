@@ -27,21 +27,27 @@ export const booksReducer = (state, action) => {
 		// CART
 		// add item to cart
 		case REDUCER_TYPE.ADD: {
-			// console.log(payload.book.id);
-			// console.log(payload.qty);
-			// console.log(state.cart);
-
-			const cartItem = state.cart.find((item) => {
+			// check if item is already in the cart
+			const checkCartItem = state.cart.find((item) => {
 				return item.book.id === payload.book.id;
 			});
 
-			console.log('cartItem id: ', cartItem);
-
-			return {
-				...state,
-				cart: [...state.cart, { ...payload }],
-			};
+			if (checkCartItem) {
+				const newCart = state.cart.map((item) => {
+					if (item.book.id === payload.book.id) {
+						return { ...item, qty: item.qty + payload.qty };
+					} else {
+						return item;
+					}
+				});
+				return { ...state, cart: [...newCart] };
+			} else
+				return {
+					...state,
+					cart: [...state.cart, { ...payload }],
+				};
 		}
+
 		// remove item from cart
 		case REDUCER_TYPE.REMOVE: {
 			const newCart = state.cart.filter((item) => {
@@ -52,6 +58,7 @@ export const booksReducer = (state, action) => {
 				cart: [...newCart],
 			};
 		}
+
 		// remove all items from cart
 		case REDUCER_TYPE.CLEAR: {
 			return {
