@@ -25,12 +25,16 @@ export const booksReducer = (state, action) => {
 		}
 
 		// CART
+
 		// add item to cart
 		case REDUCER_TYPE.ADD: {
 			// check if item is already in the cart
 			const checkCartItem = state.cart.find((item) => {
 				return item.book.id === payload.book.id;
 			});
+			// const amount = state.cart.reduce((a, c) => {
+			// 	return a + c.qty;
+			// }, 0);
 
 			if (checkCartItem) {
 				const newCart = state.cart.map((item) => {
@@ -40,6 +44,7 @@ export const booksReducer = (state, action) => {
 						return item;
 					}
 				});
+				// return { ...state, cart: [...newCart], totalBooks: amount };
 				return { ...state, cart: [...newCart] };
 			} else
 				return {
@@ -64,12 +69,12 @@ export const booksReducer = (state, action) => {
 			return {
 				...state,
 				cart: [],
+				totalBooks: 0,
 			};
 		}
 
 		// FILTERS
 		case REDUCER_TYPE.SHOWALL: {
-			// return state;
 			return { ...state, filtered: { ...state.books.data } };
 		}
 		case REDUCER_TYPE.SHOWLESS15: {
@@ -99,6 +104,7 @@ export const booksReducer = (state, action) => {
 				{
 					...state,
 					cart: [],
+					totalBooks: 0,
 				}
 			);
 		}

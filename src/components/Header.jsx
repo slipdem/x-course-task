@@ -8,7 +8,7 @@ import ProductionQuantityLimitsOutlinedIcon from '@mui/icons-material/Production
 const Header = ({ show = 'flex' }) => {
 	const navigate = useNavigate();
 	const {
-		state: { cart },
+		state: { cart, totalBooks },
 	} = useBooksContext();
 
 	const signOut = () => {
@@ -34,9 +34,9 @@ const Header = ({ show = 'flex' }) => {
 						to='/cart'
 						className='user__cart btn'>
 						<span className='user__cart-count'>
-							{cart.length ? cart.length : 0}
+							{totalBooks ? totalBooks : 0}
 						</span>
-						{cart.length ? (
+						{totalBooks ? (
 							<ShoppingCartCheckoutOutlinedIcon />
 						) : (
 							<ProductionQuantityLimitsOutlinedIcon />
