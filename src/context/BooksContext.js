@@ -5,7 +5,7 @@ import {
 	useReducer,
 	useState,
 } from 'react';
-import { booksReducer } from '../reducers/reducers';
+import { booksReducer } from './reducers/reducers';
 
 const BooksContext = createContext();
 
