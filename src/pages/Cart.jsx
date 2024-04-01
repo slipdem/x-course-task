@@ -1,19 +1,23 @@
 import React, { useEffect, useState } from 'react';
 import cartImage from '../assets/images/cart.svg';
-import { Header, Footer } from '../components';
 import { useBooksContext } from '../context/BooksContext';
 import AttachMoneyOutlinedIcon from '@mui/icons-material/AttachMoneyOutlined';
 import DeleteForeverOutlinedIcon from '@mui/icons-material/DeleteForeverOutlined';
 import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
+import {
+	CLEAR_CART,
+	PURCHASE_PRODUCTS,
+	REMOVE_FROM_CART,
+} from '../context/actionTypes';
 
 const Cart = () => {
 	const [totalPrice, setTotalPrice] = useState(0);
 
-	const {
-		state: { cart },
-		dispatch,
-	} = useBooksContext();
+	const { state, dispatch } = useBooksContext();
+	const { cart } = state;
 
+	const checkIsCartArray = Array.isArray(cart) && !cart.length;
+console.log(cart)
 	const handleTotalPrice = () => {
 		try {
 			let itemTotalPrice = cart?.map((item) => {
@@ -36,7 +40,7 @@ const Cart = () => {
 	return (
 		<>
 			<div className='cart'>
-				{cart?.length !== 0 ? (
+				{checkIsCartArray ? (
 					<table className='cart__table'>
 						<thead className='cart__table-head'>
 							<tr>
@@ -63,7 +67,7 @@ const Cart = () => {
 											className='cart__book-remove-container'
 											onClick={() => {
 												dispatch({
-													type: 'REMOVE_FROM_CART',
+													type: REMOVE_FROM_CART,
 													id: item.book.id,
 												});
 											}}>
@@ -101,18 +105,18 @@ const Cart = () => {
 			<div className='purchase'>
 				<button
 					className='btn'
-					disabled={cart?.length === 0 ? true : false}
+					disabled={checkIsCartArray ? true : false}
 					onClick={() => {
-						dispatch({ type: 'CLEAR_CART' });
+						dispatch({ type: CLEAR_CART });
 					}}>
 					<span>Clear cart</span>
 					<DeleteForeverOutlinedIcon />
 				</button>
 				<button
 					className='btn'
-					disabled={cart?.length === 0 ? true : false}
+					disabled={checkIsCartArray ? true : false}
 					onClick={() => {
-						dispatch({ type: 'PURCHASE_PRODUCTS' });
+						dispatch({ type: PURCHASE_PRODUCTS });
 					}}>
 					<span>Purchase</span>
 					<AttachMoneyOutlinedIcon />

@@ -1,16 +1,14 @@
-const initialState = {
-	user: null,
-	isLoggedIn: false,
-};
+import { LOGIN_USER, LOGOUT_USER } from '../actionTypes';
 
-const authReducer = (state = initialState, action) => {
+const authReducer = (state, action) => {
 	switch (action.type) {
-		// case value:
-
-		//   break;
+		case LOGIN_USER:
+			return console.log('login');
+		case LOGOUT_USER:
+			return console.log('log out');
 
 		default:
-			break;
+			return state;
 	}
 };
 

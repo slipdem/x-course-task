@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Card } from '.';
 import { useBooksContext } from '../context/BooksContext';
+import { FETCH_DATA } from '../context/actionTypes';
 
 const Catalog = () => {
 	const { dispatch } = useBooksContext();
@@ -21,7 +22,7 @@ const Catalog = () => {
 			setCatalog(resultData);
 			setFilteredCatalog(resultData);
 			dispatch({
-				type: 'FETCH',
+				type: FETCH_DATA,
 				payload: { data: resultData },
 			});
 		} catch (error) {
