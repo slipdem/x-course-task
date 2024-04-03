@@ -1,7 +1,8 @@
 import React from 'react';
-import { Home, Book, Cart, SignIn, Page404 } from '../pages';
+import {  Book, Cart, SignIn, Page404 } from '../pages';
 import { Route, Routes } from 'react-router-dom';
 import Layout from './Layout';
+import { Catalog } from '../pages';
 
 const AppRouter = () => {
 	function PrivateLinks() {
@@ -10,7 +11,7 @@ const AppRouter = () => {
 				<Route element={<Layout />}>
 					<Route
 						path='/'
-						element={<Home />}
+						element={<Catalog />}
 					/>
 					<Route
 						path='/book/:id'

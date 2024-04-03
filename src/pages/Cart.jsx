@@ -8,39 +8,34 @@ import {
 	CLEAR_CART,
 	PURCHASE_PRODUCTS,
 	REMOVE_FROM_CART,
+	UPDATE_CART_ITEMS_QTY,
 } from '../context/actionTypes';
 
 const Cart = () => {
 	const [totalPrice, setTotalPrice] = useState(0);
 
-	const { state, dispatch } = useBooksContext();
-	const { cart } = state;
+	const {
+		state: { cartState },
+		dispatch,
+	} = useBooksContext();
 
-	const checkIsCartArray = Array.isArray(cart) && !cart.length;
-console.log(cart)
-	const handleTotalPrice = () => {
-		try {
-			let itemTotalPrice = cart?.map((item) => {
-				return item.book.price * item.qty;
-			});
-
-			let finalCartPrice = itemTotalPrice.reduce((acc, item) => {
-				return acc + item;
-			});
-			setTotalPrice(finalCartPrice);
-		} catch {
-			console.log('Cart is empty');
-		}
-	};
+	const isCartEmpty = cartState.cart.length !== 0;
 
 	useEffect(() => {
-		handleTotalPrice();
-	}, []);
+		let itemTotalPrice = cartState.cart?.map((item) => {
+			return item.book.price * item.qty;
+		});
+
+		let finalCartPrice = itemTotalPrice.reduce((acc, item) => {
+			return acc + item;
+		}, 0);
+		setTotalPrice(finalCartPrice);
+	}, [cartState]);
 
 	return (
 		<>
 			<div className='cart'>
-				{checkIsCartArray ? (
+				{isCartEmpty ? (
 					<table className='cart__table'>
 						<thead className='cart__table-head'>
 							<tr>
@@ -53,7 +48,7 @@ console.log(cart)
 							</tr>
 						</thead>
 						<tbody className='cart__table-body'>
-							{cart?.map((item) => (
+							{cartState.cart?.map((item) => (
 								<tr key={item.book.id}>
 									<td className='cart__book-author'>{item.book.author}</td>
 									<td className='cart__book-title'>{item.book.title}</td>
@@ -69,6 +64,9 @@ console.log(cart)
 												dispatch({
 													type: REMOVE_FROM_CART,
 													id: item.book.id,
+												});
+												dispatch({
+													type: UPDATE_CART_ITEMS_QTY,
 												});
 											}}>
 											<CloseOutlinedIcon />
@@ -105,7 +103,7 @@ console.log(cart)
 			<div className='purchase'>
 				<button
 					className='btn'
-					disabled={checkIsCartArray ? true : false}
+					disabled={isCartEmpty ? false : true}
 					onClick={() => {
 						dispatch({ type: CLEAR_CART });
 					}}>
@@ -114,7 +112,7 @@ console.log(cart)
 				</button>
 				<button
 					className='btn'
-					disabled={checkIsCartArray ? true : false}
+					disabled={isCartEmpty ? false : true}
 					onClick={() => {
 						dispatch({ type: PURCHASE_PRODUCTS });
 					}}>

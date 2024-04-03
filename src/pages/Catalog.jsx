@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Card } from '.';
+import { Card } from '../components';
 import { useBooksContext } from '../context/BooksContext';
 import { FETCH_DATA } from '../context/actionTypes';
 

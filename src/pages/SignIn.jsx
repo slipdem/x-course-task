@@ -10,7 +10,7 @@ const SingIn = () => {
 
 	const logIn = () => {
 		if (userName) {
-			return navigate('/books');
+			return navigate('/');
 		}
 	};
 

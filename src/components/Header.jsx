@@ -8,7 +8,7 @@ import ProductionQuantityLimitsOutlinedIcon from '@mui/icons-material/Production
 const Header = ({ show = 'flex' }) => {
 	const navigate = useNavigate();
 	const {
-		state: { cart, totalBooks },
+		state: { cartState },
 	} = useBooksContext();
 
 	const signOut = () => {
@@ -34,20 +34,14 @@ const Header = ({ show = 'flex' }) => {
 						to='/cart'
 						className='user__cart btn'>
 						<span className='user__cart-count'>
-							{totalBooks ? totalBooks : 0}
+							{cartState.totalBooks ? cartState.totalBooks : 0}
 						</span>
-						{totalBooks ? (
+						{cartState.totalBooks ? (
 							<ShoppingCartCheckoutOutlinedIcon />
 						) : (
 							<ProductionQuantityLimitsOutlinedIcon />
 						)}
 					</Link>
-					<button
-						className='btn'
-						onClick={() => signOut()}>
-						<span>Sign Out</span>
-						<LogoutOutlinedIcon />
-					</button>
 					<span className='user__avatar'>
 						<img
 							src={avatar}
@@ -56,7 +50,13 @@ const Header = ({ show = 'flex' }) => {
 					</span>
 					<span className='user__profile-link'>
 						{localStorage.getItem('userName')}
-					</span>
+					</span>{' '}
+					<button
+						className='btn'
+						onClick={() => signOut()}>
+						<span>Sign Out</span>
+						<LogoutOutlinedIcon />
+					</button>
 				</div>
 			</nav>
 		</header>

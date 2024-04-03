@@ -5,6 +5,7 @@ export const FETCH_ERROR = 'FETCH_ERROR';
 
 export const ADD_TO_CART = 'ADD_TO_CART';
 export const REMOVE_FROM_CART = 'REMOVE_FROM_CART';
+export const UPDATE_CART_ITEMS_QTY = 'UPDATE_CART_ITEMS_QTY';
 export const CLEAR_CART = 'CLEAR_CART';
 export const PURCHASE_PRODUCTS = 'PURCHASE_PRODUCTS';
 

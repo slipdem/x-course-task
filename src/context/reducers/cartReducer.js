@@ -3,6 +3,7 @@ import {
 	REMOVE_FROM_CART,
 	PURCHASE_PRODUCTS,
 	CLEAR_CART,
+	UPDATE_CART_ITEMS_QTY,
 } from '../actionTypes';
 
 const cartReducer = (state, { type, payload, id }) => {
@@ -22,7 +23,11 @@ const cartReducer = (state, { type, payload, id }) => {
 						return item;
 					}
 				});
-				return { ...state, cart: [...newCart] };
+
+				return {
+					...state,
+					cart: [...newCart],
+				};
 			} else
 				return {
 					...state,
@@ -38,6 +43,17 @@ const cartReducer = (state, { type, payload, id }) => {
 			return {
 				...state,
 				cart: [...newCart],
+			};
+		}
+
+		// update total amount of items in cart
+		case UPDATE_CART_ITEMS_QTY: {
+			const amount = state.cart.reduce((a, c) => {
+				return a + c.qty;
+			}, 0);
+			return {
+				...state,
+				totalBooks: amount,
 			};
 		}
 
