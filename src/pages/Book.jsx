@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import noImage from '../assets/images/imageNotFound.png';
-import { useBooksContext } from '../context/BooksContext';
+import noImage from 'assets/images/imageNotFound.png';
 import { useParams } from 'react-router-dom';
+import { useBooksContext } from 'context/BooksContext';
 import AddShoppingCartOutlinedIcon from '@mui/icons-material/AddShoppingCartOutlined';
 
 const Book = () => {

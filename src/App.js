@@ -1,5 +1,5 @@
-import AppRouter from './layout/AppRouter';
-import { BooksContextProvider } from './context/BooksContext';
+import AppRouter from 'layout/AppRouter';
+import { BooksContextProvider } from 'context/BooksContext';
 
 function App() {
 	return (

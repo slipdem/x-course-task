@@ -1,8 +1,8 @@
 import { createContext, useContext, useReducer } from 'react';
-import { booksReducer } from './reducers/reducers';
-import authReducer from './reducers/authReducer';
-import cartReducer from './reducers/cartReducer';
-import fetchDataReducer from './reducers/fetchDataReducer';
+import { booksReducer } from 'context/reducers/reducers';
+import authReducer from 'context/reducers/authReducer';
+import cartReducer from 'context/reducers/cartReducer';
+import fetchDataReducer from 'context/reducers/fetchDataReducer';
 
 const BooksContext = createContext();
 

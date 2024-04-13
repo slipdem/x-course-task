@@ -1,6 +1,6 @@
 import { Link, useNavigate } from 'react-router-dom';
-import avatar from '../assets/images/avatar.png';
-import { useBooksContext } from '../context/BooksContext';
+import avatar from 'assets/images/avatar.png';
+import { useBooksContext } from 'context/BooksContext';
 import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
 import ShoppingCartCheckoutOutlinedIcon from '@mui/icons-material/ShoppingCartCheckoutOutlined';
 import ProductionQuantityLimitsOutlinedIcon from '@mui/icons-material/ProductionQuantityLimitsOutlined';

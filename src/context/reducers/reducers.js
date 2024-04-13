@@ -7,7 +7,7 @@ import {
 	SHOW_BOOKS_15_TO_30,
 	SHOW_BOOKS_LESS_15,
 	SHOW_BOOKS_UP_30,
-} from '../actionTypes';
+} from 'context/actionTypes';
 
 export const booksReducer = (state, action) => {
 	const { type,  payload } = action;

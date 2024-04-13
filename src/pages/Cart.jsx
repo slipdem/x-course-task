@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import cartImage from '../assets/images/cart.svg';
-import { useBooksContext } from '../context/BooksContext';
+import cartImage from 'assets/images/cart.svg';
+import { useBooksContext } from 'context/BooksContext';
 import AttachMoneyOutlinedIcon from '@mui/icons-material/AttachMoneyOutlined';
 import DeleteForeverOutlinedIcon from '@mui/icons-material/DeleteForeverOutlined';
 import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
@@ -9,7 +9,7 @@ import {
 	PURCHASE_PRODUCTS,
 	REMOVE_FROM_CART,
 	UPDATE_CART_ITEMS_QTY,
-} from '../context/actionTypes';
+} from 'context/actionTypes';
 
 const Cart = () => {
 	const [totalPrice, setTotalPrice] = useState(0);

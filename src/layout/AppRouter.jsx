@@ -1,8 +1,8 @@
 import React from 'react';
-import {  Book, Cart, SignIn, Page404 } from '../pages';
+import {  Book, Cart, SignIn, Page404 } from 'pages';
 import { Route, Routes } from 'react-router-dom';
 import Layout from './Layout';
-import { Catalog } from '../pages';
+import { Catalog } from 'pages';
 
 const AppRouter = () => {
 	function PrivateLinks() {

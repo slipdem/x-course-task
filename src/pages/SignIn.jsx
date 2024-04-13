@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import avatar from '../assets/images/avatar.png';
+import avatar from 'assets/images/avatar.png';
 import { useNavigate } from 'react-router-dom';
 
 const SingIn = () => {

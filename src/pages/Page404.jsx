@@ -1,5 +1,5 @@
 import React from 'react';
-import ufo from '../assets/images/ufo.png';
+import ufo from 'assets/images/ufo.png';
 
 const Page404 = () => {
 	return (
