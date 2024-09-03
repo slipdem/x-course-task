@@ -1,10 +1,13 @@
 import { useEffect, useState } from 'react';
 import { Card } from 'components';
 import { useBooksContext } from 'context/BooksContext';
-import { FETCH_DATA } from 'context/actionTypes';
+import { FETCH_DATA, API_URL } from 'const';
+import useFetch from 'hooks/useFetch';
 
 const Catalog = () => {
 	const { dispatch } = useBooksContext();
+	const { data, loading, error } = useFetch(API_URL);
+	console.log(data);
 
 	const [catalog, setCatalog] = useState([]);
 	const [filteredCatalog, setFilteredCatalog] = useState([]);
@@ -12,13 +15,8 @@ const Catalog = () => {
 
 	const dataFetch = async () => {
 		try {
-			const getData = await (
-				await fetch(
-					'https://slipdem.github.io/x-course-task/assets/fake-data/books.json',
-				)
-			).json();
+			const getData = await (await fetch(API_URL)).json();
 			const resultData = getData.books;
-
 			setCatalog(resultData);
 			setFilteredCatalog(resultData);
 			dispatch({

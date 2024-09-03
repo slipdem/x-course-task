@@ -2,7 +2,7 @@ import React from 'react';
 import noImage from 'assets/images/imageNotFound.png';
 import { Link } from 'react-router-dom';
 import { useBooksContext } from 'context/BooksContext';
-import { ADD_TO_CART, UPDATE_CART_ITEMS_QTY } from 'context/actionTypes';
+import { ADD_TO_CART, UPDATE_CART_ITEMS_QTY } from 'const';
 
 const Card = ({ book, author, price, image, title, id }) => {
 	const { dispatch } = useBooksContext();

@@ -4,7 +4,7 @@ import {
 	PURCHASE_PRODUCTS,
 	CLEAR_CART,
 	UPDATE_CART_ITEMS_QTY,
-} from 'context/actionTypes';
+} from 'const';
 
 const cartReducer = (state, { type, payload, id }) => {
 	switch (type) {

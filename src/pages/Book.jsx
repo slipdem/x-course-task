@@ -1,17 +1,22 @@
 import React, { useEffect, useState } from 'react';
-import noImage from 'assets/images/imageNotFound.png';
 import { useParams } from 'react-router-dom';
+import noImage from 'assets/images/imageNotFound.png';
 import { useBooksContext } from 'context/BooksContext';
 import AddShoppingCartOutlinedIcon from '@mui/icons-material/AddShoppingCartOutlined';
+import useFetch from 'hooks/useFetch';
+import { API_URL } from 'const';
 
 const Book = () => {
+	const { data, loading, error } = useFetch(API_URL);
+
 	const {
 		dispatch,
 		state: { cart, books },
 	} = useBooksContext();
+	console.log(books);
 	const { id } = useParams();
 	const correctId = id - 1;
-	const book = books.data[correctId];
+	const book = books?.data[correctId];
 	const [countBooks, setCountBooks] = useState(1);
 
 	const handleChange = (e) => {

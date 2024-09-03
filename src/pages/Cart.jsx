@@ -9,7 +9,7 @@ import {
 	PURCHASE_PRODUCTS,
 	REMOVE_FROM_CART,
 	UPDATE_CART_ITEMS_QTY,
-} from 'context/actionTypes';
+} from 'const';
 
 const Cart = () => {
 	const [totalPrice, setTotalPrice] = useState(0);

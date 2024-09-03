@@ -2,7 +2,6 @@ export const FETCH_DATA = 'FETCH_DATA';
 export const FETCH_SUCCESS = 'FETCH_SUCCESS';
 export const FETCH_ERROR = 'FETCH_ERROR';
 
-
 export const ADD_TO_CART = 'ADD_TO_CART';
 export const REMOVE_FROM_CART = 'REMOVE_FROM_CART';
 export const UPDATE_CART_ITEMS_QTY = 'UPDATE_CART_ITEMS_QTY';
@@ -18,3 +17,6 @@ export const SHOW_BOOKS_UP_30 = 'SHOW_BOOKS_UP_30';
 
 export const LOGIN_USER = 'LOGIN_USER';
 export const LOGOUT_USER = 'LOGOUT_USER';
+
+export const API_URL =
+	'https://slipdem.github.io/x-course-task/assets/fake-data/books.json';
