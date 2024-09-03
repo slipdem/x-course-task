@@ -2,12 +2,12 @@ import { useEffect, useState } from 'react';
 import { Card } from 'components';
 import { useBooksContext } from 'context/BooksContext';
 import { FETCH_DATA, API_URL } from 'const';
-import useFetch from 'hooks/useFetch';
+// import useFetch from 'hooks/useFetch';
 
 const Catalog = () => {
 	const { dispatch } = useBooksContext();
-	const { data, loading, error } = useFetch(API_URL);
-	console.log(data);
+	// const { data, loading, error } = useFetch(API_URL);
+	// console.log(data);
 
 	const [catalog, setCatalog] = useState([]);
 	const [filteredCatalog, setFilteredCatalog] = useState([]);
