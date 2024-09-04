@@ -20,3 +20,5 @@ export const LOGOUT_USER = 'LOGOUT_USER';
 
 export const API_URL =
 	'https://slipdem.github.io/x-course-task/assets/fake-data/books.json';
+
+export const JSON_URL = 'http://localhost:5550/books';

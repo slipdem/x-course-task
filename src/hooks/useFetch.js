@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-const useFetch = (url, options = {}) => {
+export const useFetch = (url, options = {}) => {
 	const { method = 'GET', body = null, headers = {} } = options;
 
 	const [data, setData] = useState(null);
@@ -24,8 +24,6 @@ const useFetch = (url, options = {}) => {
 			try {
 				const response = await fetch(url, requestOptions);
 
-				console.log('Response status:', response.status);
-
 				if (!response.ok) {
 					throw new Error(`HTTP error! Status: ${response.status}`);
 				}
@@ -40,9 +38,7 @@ const useFetch = (url, options = {}) => {
 		};
 
 		fetchData();
-	}, [url, method, body, headers]);
+	}, [url]);
 
 	return { data, loading, error };
 };
-
-export default useFetch;

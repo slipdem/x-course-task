@@ -3,20 +3,19 @@ import { useParams } from 'react-router-dom';
 import noImage from 'assets/images/imageNotFound.png';
 import { useBooksContext } from 'context/BooksContext';
 import AddShoppingCartOutlinedIcon from '@mui/icons-material/AddShoppingCartOutlined';
-import useFetch from 'hooks/useFetch';
-import { API_URL } from 'const';
+import { useFetch } from 'hooks/useFetch';
+import { API_URL, JSON_URL } from 'const';
 
 const Book = () => {
-	const { data, loading, error } = useFetch(API_URL);
-
+	const { data, loading, error } = useFetch(JSON_URL);
 	const {
 		dispatch,
-		state: { cart, books },
+		state: { cart },
 	} = useBooksContext();
-	console.log(books);
+
 	const { id } = useParams();
 	const correctId = id - 1;
-	const book = books?.data[correctId];
+
 	const [countBooks, setCountBooks] = useState(1);
 
 	const handleChange = (e) => {
@@ -29,67 +28,70 @@ const Book = () => {
 		}
 	};
 
-	const getFromLocalStorage = () => {
-		const data = localStorage.getItem('booksOrder');
-		const parsedData = data ? JSON.parse(data) : {};
-		return parsedData;
-	};
+	// const getFromLocalStorage = () => {
+	// 	const localData = localStorage.getItem('booksOrder');
+	// 	const parsedData = localData ? JSON.parse(localData) : {};
+	// 	return parsedData;
+	// };
 
 	useEffect(() => {
 		localStorage.setItem('booksOrder', JSON.stringify(cart));
-		getFromLocalStorage();
+		// getFromLocalStorage();
 	}, [cart]);
 
+	if (loading) return <p>Loading...</p>;
+	if (error) return <p>{error}</p>;
+
+	const book = data[correctId];
+
 	return (
-		<>
-			<div className='book'>
-				<div className='book__info'>
-					<div className='book__info-image'>
-						<img
-							src={book.image === '' ? noImage : book.image}
-							alt={book.title}
-						/>
-					</div>
-					<div className='book__info-meta'>
-						<h2>{book.title}</h2>
-						<p>{book.author}</p>
-						<div className='book__description'>
-							<p>{book.description}</p>
-						</div>
+		<div className='book'>
+			<div className='book__info'>
+				<div className='book__info-image'>
+					<img
+						src={book.image === '' ? noImage : book.image}
+						alt={book.title}
+					/>
+				</div>
+				<div className='book__info-meta'>
+					<h2>{book.title}</h2>
+					<p>{book.author}</p>
+					<div className='book__description'>
+						<p>{book.description}</p>
 					</div>
 				</div>
-				<ul className='book__order'>
-					<li className='book__order-price'>
-						<span className='fw700'>Price</span>
-						<span>${book.price}</span>
-					</li>
-					<li className='book__order-count'>
-						<span className='fw700'>Count</span>
-						<input
-							type='number'
-							onChange={handleChange}
-							value={countBooks}
-						/>
-					</li>
-					<li className='book__order-total'>
-						<span className='fw700'>Total price</span>
-						<span>${(book.price * countBooks).toFixed(2)}</span>
-					</li>
-					<li>
-						<button
-							className='btn w100'
-							onClick={() => {
-								dispatch({
-									type: 'ADD_TO_CART',
-									payload: { book, qty: +countBooks },
-								});
-							}}>
-							Add to cart{<AddShoppingCartOutlinedIcon />}
-						</button>
-					</li>
-				</ul>
 			</div>
-		</>
+			<ul className='book__order'>
+				<li className='book__order-price'>
+					<span className='fw700'>Price</span>
+					<span>${book.price}</span>
+				</li>
+				<li className='book__order-count'>
+					<span className='fw700'>Count</span>
+					<input
+						type='number'
+						onChange={handleChange}
+						value={countBooks}
+					/>
+				</li>
+				<li className='book__order-total'>
+					<span className='fw700'>Total price</span>
+					<span>${(book.price * countBooks).toFixed(2)}</span>
+				</li>
+				<li>
+					<button
+						className='btn w100'
+						onClick={() => {
+							dispatch({
+								type: 'ADD_TO_CART',
+								payload: { book, qty: +countBooks },
+							});
+						}}>
+						Add to cart{<AddShoppingCartOutlinedIcon />}
+					</button>
+				</li>
+			</ul>
+		</div>
 	);
 };
 
