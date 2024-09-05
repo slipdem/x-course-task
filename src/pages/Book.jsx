@@ -7,7 +7,7 @@ import { useFetch } from 'hooks/useFetch';
 import { API_URL, JSON_URL, UPDATE_CART_ITEMS_QTY } from 'const';
 
 const Book = () => {
-	const { data, loading, error } = useFetch(JSON_URL);
+	const { data, loading, error } = useFetch(API_URL);
 	const {
 		dispatch,
 		state: { cart },
