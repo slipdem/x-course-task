@@ -4,7 +4,7 @@ import noImage from 'assets/images/imageNotFound.png';
 import { useBooksContext } from 'context/BooksContext';
 import AddShoppingCartOutlinedIcon from '@mui/icons-material/AddShoppingCartOutlined';
 import { useFetch } from 'hooks/useFetch';
-import { API_URL, JSON_URL } from 'const';
+import { API_URL, JSON_URL, UPDATE_CART_ITEMS_QTY } from 'const';
 
 const Book = () => {
 	const { data, loading, error } = useFetch(JSON_URL);
@@ -12,7 +12,6 @@ const Book = () => {
 		dispatch,
 		state: { cart },
 	} = useBooksContext();
-
 	const { id } = useParams();
 	const correctId = id - 1;
 
@@ -85,6 +84,9 @@ const Book = () => {
 							dispatch({
 								type: 'ADD_TO_CART',
 								payload: { book, qty: +countBooks },
+							});
+							dispatch({
+								type: UPDATE_CART_ITEMS_QTY,
 							});
 						}}>
 						Add to cart{<AddShoppingCartOutlinedIcon />}

@@ -2,12 +2,11 @@ import { useEffect, useState } from 'react';
 import { Card } from 'components';
 import { useBooksContext } from 'context/BooksContext';
 import { FETCH_DATA, API_URL, JSON_URL } from 'const';
-import {useFetch} from 'hooks/useFetch';
+import { useFetch } from 'hooks/useFetch';
 
 const Catalog = () => {
 	const { dispatch } = useBooksContext();
 	const { data, loading, error } = useFetch(JSON_URL);
-	console.log(data);
 
 	const [catalog, setCatalog] = useState([]);
 	const [filteredCatalog, setFilteredCatalog] = useState([]);
@@ -52,7 +51,6 @@ const Catalog = () => {
 		);
 		setCatalog(searchResult);
 	}, [searchValue]);
-
 	return (
 		<section className='books'>
 			<div className='books__header'>

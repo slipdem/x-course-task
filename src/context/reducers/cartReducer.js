@@ -12,12 +12,12 @@ const cartReducer = (state, { type, payload, id }) => {
 		case ADD_TO_CART: {
 			// check if item is already in the cart
 			const checkCartItem = state.cart.find((item) => {
-				return item.book.id === payload.book.id;
+				return item.book.title === payload.book.title;
 			});
 
 			if (checkCartItem) {
 				const newCart = state.cart.map((item) => {
-					if (item.book.id === payload.book.id) {
+					if (item.book.title === payload.book.title) {
 						return { ...item, qty: item.qty + payload.qty };
 					} else {
 						return item;
