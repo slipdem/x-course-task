@@ -2,11 +2,11 @@ import { useEffect, useState } from 'react';
 import { Card } from 'components';
 import { useBooksContext } from 'context/BooksContext';
 import { FETCH_DATA, API_URL, JSON_URL } from 'const';
-import { useFetch } from 'hooks/useFetch';
+// import { useFetch } from 'hooks/useFetch';
 
 const Catalog = () => {
 	const { dispatch } = useBooksContext();
-	const { data, loading, error } = useFetch(JSON_URL);
+	// const { data, loading, error } = useFetch(JSON_URL);
 
 	const [catalog, setCatalog] = useState([]);
 	const [filteredCatalog, setFilteredCatalog] = useState([]);
@@ -43,6 +43,7 @@ const Catalog = () => {
 
 	useEffect(() => {
 		dataFetch();
+		// eslint-disable-next-line
 	}, []);
 
 	useEffect(() => {
@@ -50,6 +51,7 @@ const Catalog = () => {
 			item.title.toLowerCase().includes(searchValue),
 		);
 		setCatalog(searchResult);
+		// eslint-disable-next-line
 	}, [searchValue]);
 	return (
 		<section className='books'>
